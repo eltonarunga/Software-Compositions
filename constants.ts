@@ -130,5 +130,13 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://cqybrkrg.manus.space/',
     tags: ['AI', 'Agent', 'Food', 'Automation']
+  },
+  {
+    id: 15,
+    title: 'Suno Compositions',
+    description: 'AI-powered music and audio compositions exploring the frontiers of generative art.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://suno.com/@earunga',
+    tags: ['AI', 'Music', 'Audio', 'Generative']
   }
 ];
