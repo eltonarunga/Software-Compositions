@@ -20,20 +20,44 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
-    id: 1,
-    title: 'AI Video Prompt Enhancer',
-    description: 'Enhance your video prompts with the power of generative AI.',
-    imageUrl: getImageForIndex(0),
-    url: 'https://gemini.google.com/share/6a3c09ed6a3f?hl=en-GB',
-    tags: ['AI', 'Gemini', 'Video']
+    id: 10,
+    title: 'Lugha Learner',
+    description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://lugha-smart-kenya.lovable.app/auth',
+    tags: ['AI', 'Language', 'Kenya', 'Education']
   },
   {
-    id: 2,
-    title: 'LughaLearner',
-    description: 'An interactive platform for learning new languages.',
+    id: 7,
+    title: 'Kenya MedReg Compliance Assistant',
+    description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
+    tags: ['Health', 'Compliance', 'SaaS']
+  },
+  {
+    id: 16,
+    title: 'Networth Portfolio Tracker',
+    description: 'A comprehensive tool to track and manage your net worth and investment portfolios in real-time.',
     imageUrl: getImageForIndex(1),
-    url: 'https://replit.com/@eltonarunga/LughaLearner?s=app#replit.md',
-    tags: ['Education', 'React', 'Language']
+    url: 'https://net-worth-portfolio-tracker-544721327154.us-west1.run.app',
+    tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment']
+  },
+  {
+    id: 17,
+    title: 'KenyaBase Company Explorer',
+    description: 'An interactive tool to explore and analyze comprehensive data on Kenyan companies.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://kenyabase-company-explorer-209666242867.us-west1.run.app',
+    tags: ['Kenya', 'Business', 'Data', 'Analytics']
+  },
+  {
+    id: 18,
+    title: 'Mwakilishi Wangu',
+    description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
+    imageUrl: getImageForIndex(3),
+    url: 'https://mwakilishi-wangu-209666242867.us-west1.run.app',
+    tags: ['Civic Tech', 'Kenya', 'Governance']
   },
   {
     id: 3,
@@ -60,22 +84,6 @@ export const PROJECTS: Project[] = [
     tags: ['Education', 'Agile', 'Collaboration']
   },
   {
-    id: 6,
-    title: 'Kenya Language Learner',
-    description: 'Learn Kenyan languages with this interactive and cultural learning tool.',
-    imageUrl: getImageForIndex(1),
-    url: 'https://replit.com/@eltonarunga/KenyaLanguageLearner',
-    tags: ['Language', 'Kenya', 'Education']
-  },
-  {
-    id: 7,
-    title: 'MedComplianceHub',
-    description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
-    imageUrl: getImageForIndex(2),
-    url: 'https://replit.com/@eltonarunga1/MedComplianceHub',
-    tags: ['Health', 'Compliance', 'SaaS']
-  },
-  {
     id: 8,
     title: 'Digital Art Market',
     description: 'A vibrant marketplace for buying, selling, and discovering unique digital art and collectibles.',
@@ -90,14 +98,6 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://irdoujhu.manus.space/',
     tags: ['Creative Coding', 'Portfolio', 'Art']
-  },
-  {
-    id: 10,
-    title: 'LughaLearner Live Prototype',
-    description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
-    imageUrl: getImageForIndex(1),
-    url: 'https://lugha-smart-kenya.lovable.app',
-    tags: ['AI', 'Language', 'Kenya', 'Education']
   },
   {
     id: 11,
@@ -128,7 +128,7 @@ export const PROJECTS: Project[] = [
     title: 'Food Ordering AI Agent',
     description: 'An AI-powered agent to streamline your food ordering experience, making it faster and more intuitive.',
     imageUrl: getImageForIndex(1),
-    url: 'https://cqybrkrg.manus.space/',
+    url: 'https://food-ordering-agent-209666242867.us-west1.run.app',
     tags: ['AI', 'Agent', 'Food', 'Automation']
   },
   {
@@ -138,5 +138,13 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://suno.com/@earunga',
     tags: ['AI', 'Music', 'Audio', 'Generative']
+  },
+  {
+    id: 1,
+    title: 'AI Video Prompt Enhancer',
+    description: 'Enhance your video prompts with the power of generative AI.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://gemini.google.com/share/6a3c09ed6a3f?hl=en-GB',
+    tags: ['AI', 'Gemini', 'Video']
   }
 ];

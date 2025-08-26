@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PROJECTS } from './constants';
 import LinkCard from './components/LinkCard';
 
@@ -6,6 +6,27 @@ const avatarSvg = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"
 const avatarDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(avatarSvg)}`;
 
 const App: React.FC = () => {
+  const [projects, setProjects] = useState(PROJECTS);
+
+  const handleMove = (id: number, direction: 'up' | 'down') => {
+    setProjects(prevProjects => {
+      const index = prevProjects.findIndex(p => p.id === id);
+      if (index === -1) return prevProjects;
+
+      const newProjects = [...prevProjects];
+
+      if (direction === 'up' && index > 0) {
+        // Swap with the previous element
+        [newProjects[index - 1], newProjects[index]] = [newProjects[index], newProjects[index - 1]];
+      } else if (direction === 'down' && index < newProjects.length - 1) {
+        // Swap with the next element
+        [newProjects[index + 1], newProjects[index]] = [newProjects[index], newProjects[index + 1]];
+      }
+      
+      return newProjects;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white selection:bg-cyan-500 selection:text-black">
       <div 
@@ -24,8 +45,14 @@ const App: React.FC = () => {
         </header>
 
         <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project) => (
-            <LinkCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <LinkCard 
+              key={project.id} 
+              project={project}
+              index={index}
+              totalCount={projects.length}
+              onMove={handleMove}
+            />
           ))}
         </div>
 
