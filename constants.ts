@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     title: 'nanoStrategyKE AI Accelerator Challenge',
     description: 'A web application to display the 28-Day AI Accelerator course, designed to help users master productivity and creativity with AI tools. The app presents the course structure, modules, daily lessons, and learning objectives in an engaging format.',
     imageUrl: getImageForIndex(0),
-    url: 'https://ai.studio/apps/drive/16VQwQGuiEAvJnXRwYu_-fgZgcrvp7TNX',
+    url: 'https://nanostrategy.netlify.app/',
     tags: ['AI', 'Education', 'Productivity', 'Course']
   },
   {
