@@ -20,6 +20,22 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 27,
+    title: 'BTC-MPesa',
+    description: 'A web application that allows users to spend Bitcoin via M-Pesa by converting BTC to KES and sending it to a specified M-Pesa recipient (Phone Number, Paybill, or Till Number).',
+    imageUrl: getImageForIndex(2),
+    url: 'https://btc-mpesa.vercel.app/',
+    tags: ['Bitcoin', 'M-Pesa', 'Fintech', 'Kenya', 'Crypto']
+  },
+  {
+    id: 26,
+    title: 'Stylo - AI wardrobe transformer',
+    description: 'An AI-powered application that transforms your wardrobe by suggesting new outfits, cataloging your clothes, and helping you discover your personal style.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1JEh7KNQUlgDMOGc4heJTBoqQC7kcX6bV',
+    tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant']
+  },
+  {
     id: 25,
     title: 'nanoStrategyKE AI Accelerator Challenge',
     description: 'A web application to display the 28-Day AI Accelerator course, designed to help users master productivity and creativity with AI tools. The app presents the course structure, modules, daily lessons, and learning objectives in an engaging format.',
