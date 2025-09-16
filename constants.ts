@@ -20,6 +20,38 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 25,
+    title: 'nanoStrategyKE AI Accelerator Challenge',
+    description: 'A web application to display the 28-Day AI Accelerator course, designed to help users master productivity and creativity with AI tools. The app presents the course structure, modules, daily lessons, and learning objectives in an engaging format.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://ai.studio/apps/drive/16VQwQGuiEAvJnXRwYu_-fgZgcrvp7TNX',
+    tags: ['AI', 'Education', 'Productivity', 'Course']
+  },
+  {
+    id: 24,
+    title: 'Kazira.io',
+    description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
+    imageUrl: getImageForIndex(3),
+    url: 'https://kazira-io-669567718651.us-west1.run.app/',
+    tags: ['SaaS', 'AI', 'Automation', 'EdTech']
+  },
+  {
+    id: 23,
+    title: 'Crave Cam',
+    description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://ai.studio/apps/drive/1OkS1MZJIuetbXjjD3yTSAvtg-ASgIUfV',
+    tags: ['AI', 'Video', 'Food', 'Marketing']
+  },
+  {
+    id: 22,
+    title: 'Lugha Learner Kenya (Version 2.0)',
+    description: 'The next generation AI-powered assistant for learning Kenyan languages, featuring new lessons and an improved user experience.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://lugha-learner-kenya.vercel.app/',
+    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0']
+  },
+  {
     id: 21,
     title: 'Safari Mate - AI Travel Agent',
     description: 'An AI-powered travel assistant that helps travelers prepare for trips by providing a personalized checklist of requirements to avoid any hiccups.',
@@ -72,7 +104,7 @@ export const PROJECTS: Project[] = [
     title: 'KenyaBase Company Explorer',
     description: 'An interactive tool to explore and analyze comprehensive data on Kenyan companies.',
     imageUrl: getImageForIndex(0),
-    url: 'https://kenyabase-company-explorer-209666242867.us-west1.run.app',
+    url: 'https://kenyabase.netlify.app/',
     tags: ['Kenya', 'Business', 'Data', 'Analytics']
   },
   {
@@ -149,10 +181,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 14,
-    title: 'Food Ordering AI Agent',
+    title: 'Cheffie Ai',
     description: 'An AI-powered agent to streamline your food ordering experience, making it faster and more intuitive.',
     imageUrl: getImageForIndex(1),
-    url: 'https://food-ordering-agent-209666242867.us-west1.run.app',
+    url: 'https://cheffie-ai.netlify.app/',
     tags: ['AI', 'Agent', 'Food', 'Automation']
   },
   {
