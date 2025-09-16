@@ -20,18 +20,42 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 21,
+    title: 'Safari Mate - AI Travel Agent',
+    description: 'An AI-powered travel assistant that helps travelers prepare for trips by providing a personalized checklist of requirements to avoid any hiccups.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1aPrKRXZPWumhaFw7J5rPO4Z-2bRR7yQD',
+    tags: ['AI', 'Travel', 'Assistant', 'Planning']
+  },
+  {
+    id: 20,
+    title: 'KRA Tax Tools - Annual Calculator & WHT Tracker',
+    description: 'Includes a Kenyan Individual Annual Income Tax Calculator and a Withholding Tax (WHT) Tracker with an option to upload WHT certificates for information extraction (experimental).',
+    imageUrl: getImageForIndex(0),
+    url: 'https://ai.studio/apps/drive/1gcEA__WvNHy_GiYlPYNVRkA9Hw13lTJc',
+    tags: ['Fintech', 'Tax', 'Kenya', 'Calculator']
+  },
+  {
+    id: 19,
+    title: 'KaziraX Automate - Future of Work',
+    description: 'KaziraX Automate offers intelligent AI solutions to augment and replace declining job roles, boosting efficiency and innovation for businesses.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1kTlmKKOv-ZpHzpxplXo7fb30wzzDM0eF',
+    tags: ['AI', 'Automation', 'Future of Work', 'SaaS']
+  },
+  {
     id: 10,
     title: 'Lugha Learner',
     description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
-    imageUrl: getImageForIndex(1),
-    url: 'https://lugha-smart-kenya.lovable.app/auth',
+    imageUrl: getImageForIndex(2),
+    url: 'https://lugha-learner.vercel.app/',
     tags: ['AI', 'Language', 'Kenya', 'Education']
   },
   {
     id: 7,
     title: 'Kenya MedReg Compliance Assistant',
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
-    imageUrl: getImageForIndex(2),
+    imageUrl: getImageForIndex(3),
     url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
     tags: ['Health', 'Compliance', 'SaaS']
   },
@@ -40,7 +64,7 @@ export const PROJECTS: Project[] = [
     title: 'Networth Portfolio Tracker',
     description: 'A comprehensive tool to track and manage your net worth and investment portfolios in real-time.',
     imageUrl: getImageForIndex(1),
-    url: 'https://net-worth-portfolio-tracker-544721327154.us-west1.run.app',
+    url: 'https://net-worth-portfolio-tracker.vercel.app/',
     tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment']
   },
   {
@@ -56,7 +80,7 @@ export const PROJECTS: Project[] = [
     title: 'Mwakilishi Wangu',
     description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
     imageUrl: getImageForIndex(3),
-    url: 'https://mwakilishi-wangu-209666242867.us-west1.run.app',
+    url: 'https://mwakilishi-wangu.netlify.app/',
     tags: ['Civic Tech', 'Kenya', 'Governance']
   },
   {
@@ -64,7 +88,7 @@ export const PROJECTS: Project[] = [
     title: 'OralBiohack',
     description: 'A decentralized platform for oral health data and research.',
     imageUrl: getImageForIndex(2),
-    url: 'https://replit.com/@eltonarunga1/OralBiohack?s=app',
+    url: 'https://ai.studio/apps/drive/1mq0wYYSTaB8yFSBS-2PGpEryNmImymDN',
     tags: ['Health', 'Web3', 'Biohacking']
   },
   {
@@ -72,7 +96,7 @@ export const PROJECTS: Project[] = [
     title: 'LandChain Africa',
     description: 'A blockchain-based solution for secure land registry in Africa.',
     imageUrl: getImageForIndex(3),
-    url: 'https://replit.com/@eltonarunga1/LandChainAfrica?s=app',
+    url: 'https://ai.studio/apps/drive/1pfy6_Xj3Oa4GTVsyYBilAUMGSvg-oUWm',
     tags: ['Blockchain', 'Real Estate', 'Web3']
   },
   {
@@ -136,7 +160,7 @@ export const PROJECTS: Project[] = [
     title: 'Suno Compositions',
     description: 'AI-powered music and audio compositions exploring the frontiers of generative art.',
     imageUrl: getImageForIndex(2),
-    url: 'https://suno.com/@earunga',
+    url: 'suno.com/@earunga',
     tags: ['AI', 'Music', 'Audio', 'Generative']
   },
   {
