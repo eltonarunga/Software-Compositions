@@ -181,7 +181,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 12,
-    title: 'Kazira,io opal agent',
+    title: 'Kazira.io Job Disruption Scanner (Opal)',
     description: 'An innovative agent built on the Opal platform, designed for intelligent task automation and assistance.',
     imageUrl: getImageForIndex(3),
     url: 'https://opal.withgoogle.com/?flow=drive:/1g5EsPt18QZYsNAcaE1f9KgmCnWOQEvin&shared&mode=app',
@@ -208,7 +208,7 @@ export const PROJECTS: Project[] = [
     title: 'Suno Compositions',
     description: 'AI-powered music and audio compositions exploring the frontiers of generative art.',
     imageUrl: getImageForIndex(2),
-    url: 'suno.com/@earunga',
+    url: 'https://suno.com/@earunga',
     tags: ['AI', 'Music', 'Audio', 'Generative']
   },
   {

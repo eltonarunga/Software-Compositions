@@ -200,6 +200,9 @@ const App: React.FC = () => {
                 </svg>
             </a>
           </div>
+          <p className="mb-4">
+            Showing {filteredAndSortedProjects.length} of {PROJECTS.length} compositions
+          </p>
           <p>&copy; {new Date().getFullYear()} EArunga. All rights reserved.</p>
           <p className="mt-1">Built with React & Tailwind CSS</p>
         </footer>
