@@ -20,6 +20,14 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 28,
+    title: 'kazira.io SaaS',
+    description: 'A modern SaaS platform focusing on the future of work, offering intelligent AI solutions to boost efficiency and innovation.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://kazira-io-saas-landi-3e55.bolt.host/',
+    tags: ['SaaS', 'AI', 'Future of Work', 'Innovation']
+  },
+  {
     id: 27,
     title: 'BTC-MPesa',
     description: 'A web application that allows users to spend Bitcoin via M-Pesa by converting BTC to KES and sending it to a specified M-Pesa recipient (Phone Number, Paybill, or Till Number).',
@@ -56,7 +64,7 @@ export const PROJECTS: Project[] = [
     title: 'Crave Cam',
     description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
     imageUrl: getImageForIndex(2),
-    url: 'https://ai.studio/apps/drive/1OkS1MZJIuetbXjjD3yTSAvtg-ASgIUfV',
+    url: 'https://cravecam.netlify.app/',
     tags: ['AI', 'Video', 'Food', 'Marketing']
   },
   {
@@ -80,7 +88,7 @@ export const PROJECTS: Project[] = [
     title: 'KRA Tax Tools - Annual Calculator & WHT Tracker',
     description: 'Includes a Kenyan Individual Annual Income Tax Calculator and a Withholding Tax (WHT) Tracker with an option to upload WHT certificates for information extraction (experimental).',
     imageUrl: getImageForIndex(0),
-    url: 'https://ai.studio/apps/drive/1gcEA__WvNHy_GiYlPYNVRkA9Hw13lTJc',
+    url: 'https://tax-calculator-henna-seven.vercel.app/',
     tags: ['Fintech', 'Tax', 'Kenya', 'Calculator']
   },
   {
@@ -88,7 +96,7 @@ export const PROJECTS: Project[] = [
     title: 'KaziraX Automate - Future of Work',
     description: 'KaziraX Automate offers intelligent AI solutions to augment and replace declining job roles, boosting efficiency and innovation for businesses.',
     imageUrl: getImageForIndex(1),
-    url: 'https://ai.studio/apps/drive/1kTlmKKOv-ZpHzpxplXo7fb30wzzDM0eF',
+    url: '#',
     tags: ['AI', 'Automation', 'Future of Work', 'SaaS']
   },
   {
@@ -157,10 +165,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 8,
-    title: 'Digital Art Market',
+    title: 'Art chain',
     description: 'A vibrant marketplace for buying, selling, and discovering unique digital art and collectibles.',
     imageUrl: getImageForIndex(3),
-    url: 'https://replit.com/@eltonarunga1/DigitalArtMarket',
+    url: 'https://art-chain-opal.vercel.app/',
     tags: ['Art', 'Marketplace', 'Web3']
   },
   {
