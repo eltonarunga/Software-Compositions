@@ -95,6 +95,25 @@ const App: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-100">Software Compositions by EArunga</h1>
           <p className="text-md sm:text-lg text-gray-400 mt-2">Curator of digital aesthetics & functional art.</p>
         </header>
+        
+        <section className="w-full max-w-4xl mb-10 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+            <img 
+              src={avatarDataUri} 
+              alt="EArunga's profile picture" 
+              className="w-32 h-32 rounded-full border-4 border-gray-700 flex-shrink-0 shadow-lg"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">About Me</h2>
+              <p className="text-gray-300 leading-relaxed">
+                I'm a software composer passionate about building intelligent, user-centric applications at the intersection of clean code, intuitive UI/UX, and the transformative power of AI.
+              </p>
+              <p className="text-gray-300 leading-relaxed mt-3">
+                This collection represents my journey through various technologies and creative challenges. Feel free to explore the projects and connect with me.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <div className="w-full max-w-7xl mb-8 p-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">

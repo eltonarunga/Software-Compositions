@@ -20,6 +20,14 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 29,
+    title: 'Cinema AI Agent Bot',
+    description: 'An AI-powered agent to help you discover books, cinema, and movies.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1ciylQudDFh8ETGa7hGlB2fnNDzGkEiZZ',
+    tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot']
+  },
+  {
     id: 28,
     title: 'kazira.io SaaS',
     description: 'A modern SaaS platform focusing on the future of work, offering intelligent AI solutions to boost efficiency and innovation.',
