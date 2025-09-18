@@ -20,6 +20,14 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 30,
+    title: 'Google Canvas Compositions',
+    description: 'AI-powered image style reference generators using Google Canvas to inspire creative projects.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://google-canvas-compos-rqcc.bolt.host/',
+    tags: ['AI', 'Google Canvas', 'Image Generation', 'Art', 'Style Reference']
+  },
+  {
     id: 29,
     title: 'Cinema AI Agent Bot',
     description: 'An AI-powered agent to help you discover books, cinema, and movies.',
