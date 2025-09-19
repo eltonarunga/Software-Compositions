@@ -157,8 +157,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    title: 'OralBiohack',
-    description: 'A decentralized platform for oral health data and research.',
+    title: 'Oral Biohacker AI',
+    description: 'A decentralized platform for oral health biohacking.',
     imageUrl: getImageForIndex(2),
     url: 'https://ai.studio/apps/drive/1mq0wYYSTaB8yFSBS-2PGpEryNmImymDN',
     tags: ['Health', 'Web3', 'Biohacking']
