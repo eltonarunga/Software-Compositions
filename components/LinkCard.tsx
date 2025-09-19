@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Project } from '../types';
 
@@ -13,7 +14,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ project }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-500/50 overflow-hidden"
+      className="group flex flex-col h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-500/50 overflow-hidden"
     >
       <img
         src={imageUrl}

@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isTagFilterVisible, setIsTagFilterVisible] = useState(false);
   const [tagSearchTerm, setTagSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -36,13 +37,23 @@ const App: React.FC = () => {
   };
 
   const filteredAndSortedProjects = useMemo(() => {
-    // 1. Filter by tags
-    const filtered = selectedTags.length === 0
-      ? PROJECTS
-      : PROJECTS.filter(project => project.tags.some(tag => selectedTags.includes(tag)));
+    const lowercasedSearchTerm = searchTerm.toLowerCase();
 
-    // 2. Sort the filtered results
-    const sorted = [...filtered].sort((a, b) => {
+    // 1. Filter by search term (title and description)
+    const searched = searchTerm.trim() === ''
+      ? PROJECTS
+      : PROJECTS.filter(project =>
+          project.title.toLowerCase().includes(lowercasedSearchTerm) ||
+          project.description.toLowerCase().includes(lowercasedSearchTerm)
+        );
+        
+    // 2. Filter by tags
+    const filteredByTags = selectedTags.length === 0
+      ? searched
+      : searched.filter(project => project.tags.some(tag => selectedTags.includes(tag)));
+
+    // 3. Sort the filtered results
+    const sorted = [...filteredByTags].sort((a, b) => {
       if (sortBy === 'title') {
         return a.title.localeCompare(b.title);
       }
@@ -54,7 +65,7 @@ const App: React.FC = () => {
     }
 
     return sorted;
-  }, [sortBy, sortOrder, selectedTags]);
+  }, [sortBy, sortOrder, selectedTags, searchTerm]);
   
   const visibleTags = useMemo(() => {
     if (!tagSearchTerm) {
@@ -65,18 +76,11 @@ const App: React.FC = () => {
     );
   }, [allTags, tagSearchTerm]);
 
-  const getButtonClass = (isActive: boolean) => 
-    `px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-      isActive
-        ? 'bg-cyan-500 text-white shadow'
-        : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
-    }`;
-    
   const getTagButtonClass = (isActive: boolean) => 
-    `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 border ${
+    `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform ${
       isActive
-        ? 'bg-cyan-500 text-white border-cyan-500 shadow'
-        : 'bg-gray-700/80 text-gray-300 border-gray-600 hover:bg-gray-600/80 hover:border-gray-500'
+        ? 'bg-cyan-500 text-white border-cyan-500 shadow-md scale-105'
+        : 'bg-gray-700/80 text-gray-300 border-gray-600 hover:bg-gray-600/80 hover:border-gray-500 hover:scale-110'
     }`;
 
   return (
@@ -116,24 +120,88 @@ const App: React.FC = () => {
         </section>
 
         <div className="w-full max-w-7xl mb-8 p-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg">
+          <div className="w-full mb-4">
+            <label htmlFor="project-search" className="sr-only">Search projects by title or description</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
+                <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="project-search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search projects..."
+                className="w-full bg-gray-900/50 border border-gray-600 rounded-md pl-10 pr-4 py-2 text-sm text-gray-200 placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+              />
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+            {/* Sort By Radio Group */}
             <div className="flex items-center gap-3">
-              <span className="font-semibold text-gray-300">Sort by:</span>
-              <div className="flex space-x-2">
-                <button onClick={() => setSortBy('id')} className={getButtonClass(sortBy === 'id')}>Date Added</button>
-                <button onClick={() => setSortBy('title')} className={getButtonClass(sortBy === 'title')}>Title</button>
+              <span id="sort-by-label" className="font-semibold text-gray-300">Sort by:</span>
+              <div className="flex space-x-2" role="radiogroup" aria-labelledby="sort-by-label">
+                <label>
+                  <input
+                    type="radio"
+                    name="sortBy"
+                    value="id"
+                    checked={sortBy === 'id'}
+                    onChange={() => setSortBy('id')}
+                    className="sr-only"
+                  />
+                  <span className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                    sortBy === 'id'
+                      ? 'bg-cyan-500 text-white shadow'
+                      : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
+                  }`}>
+                    Date Added
+                  </span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="sortBy"
+                    value="title"
+                    checked={sortBy === 'title'}
+                    onChange={() => setSortBy('title')}
+                    className="sr-only"
+                  />
+                  <span className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                    sortBy === 'title'
+                      ? 'bg-cyan-500 text-white shadow'
+                      : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
+                  }`}>
+                    Title
+                  </span>
+                </label>
               </div>
             </div>
+
+            {/* Sort Order Toggle */}
             <div className="flex items-center gap-3">
               <span className="font-semibold text-gray-300">Order:</span>
-              <div className="flex space-x-2">
-                  <button onClick={() => setSortOrder('asc')} className={getButtonClass(sortOrder === 'asc')} aria-label="Ascending order">
-                      Ascending
-                  </button>
-                  <button onClick={() => setSortOrder('desc')} className={getButtonClass(sortOrder === 'desc')} aria-label="Descending order">
-                      Descending
-                  </button>
-              </div>
+              <button
+                onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 bg-gray-700/80 text-gray-300 hover:bg-gray-600/80"
+                aria-live="polite"
+                aria-label={`Current order: ${sortOrder}. Toggle to ${sortOrder === 'asc' ? 'descending' : 'ascending'}`}
+              >
+                <span>{sortOrder === 'asc' ? 'Ascending' : 'Descending'}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-5 w-5 transition-transform duration-300 ${sortOrder === 'asc' ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5-5-5M12 18V6" />
+                </svg>
+              </button>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-gray-700/50">
@@ -173,6 +241,7 @@ const App: React.FC = () => {
                       key={tag}
                       onClick={() => handleTagClick(tag)}
                       className={getTagButtonClass(selectedTags.includes(tag))}
+                      aria-pressed={selectedTags.includes(tag)}
                     >
                       {tag}
                     </button>
@@ -203,17 +272,17 @@ const App: React.FC = () => {
 
         <footer className="mt-12 text-center text-gray-500 text-sm">
           <div className="flex justify-center space-x-6 mb-4">
-            <a href="https://github.com/earunga" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://github.com/eltonarunga" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" />
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/eltonarunga/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://www.linkedin.com/in/elton-arunga-80405811b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
-            <a href="https://twitter.com/earunga" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://x.com/E_Arunga" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.65.177-1.353.23-2.064.077.608 1.881 2.372 3.256 4.465 3.293-1.711 1.341-3.869 2.143-6.217 2.143-.404 0-.802-.023-1.195-.07 2.206 1.414 4.833 2.239 7.646 2.239 9.178 0 14.207-7.603 13.882-14.536 1.033-.745 1.91-1.685 2.62-2.74z" />
                 </svg>
