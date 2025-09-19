@@ -20,18 +20,114 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 30,
+    title: 'Google Canvas Compositions',
+    description: 'AI-powered image style reference generators using Google Canvas to inspire creative projects.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://google-canvas-compos-rqcc.bolt.host/',
+    tags: ['AI', 'Google Canvas', 'Image Generation', 'Art', 'Style Reference']
+  },
+  {
+    id: 29,
+    title: 'Cinema AI Agent Bot',
+    description: 'An AI-powered agent to help you discover books, cinema, and movies.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1ciylQudDFh8ETGa7hGlB2fnNDzGkEiZZ',
+    tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot']
+  },
+  {
+    id: 28,
+    title: 'kazira.io SaaS',
+    description: 'A modern SaaS platform focusing on the future of work, offering intelligent AI solutions to boost efficiency and innovation.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://kazira-io-saas-landi-3e55.bolt.host/',
+    tags: ['SaaS', 'AI', 'Future of Work', 'Innovation']
+  },
+  {
+    id: 27,
+    title: 'BTC-MPesa',
+    description: 'A web application that allows users to spend Bitcoin via M-Pesa by converting BTC to KES and sending it to a specified M-Pesa recipient (Phone Number, Paybill, or Till Number).',
+    imageUrl: getImageForIndex(2),
+    url: 'https://btc-mpesa.vercel.app/',
+    tags: ['Bitcoin', 'M-Pesa', 'Fintech', 'Kenya', 'Crypto']
+  },
+  {
+    id: 26,
+    title: 'Stylo - AI wardrobe transformer',
+    description: 'An AI-powered application that transforms your wardrobe by suggesting new outfits, cataloging your clothes, and helping you discover your personal style.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1JEh7KNQUlgDMOGc4heJTBoqQC7kcX6bV',
+    tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant']
+  },
+  {
+    id: 25,
+    title: 'nanoStrategyKE AI Accelerator Challenge',
+    description: 'A web application to display the 28-Day AI Accelerator course, designed to help users master productivity and creativity with AI tools. The app presents the course structure, modules, daily lessons, and learning objectives in an engaging format.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://nanostrategy.netlify.app/',
+    tags: ['AI', 'Education', 'Productivity', 'Course']
+  },
+  {
+    id: 24,
+    title: 'Kazira.io',
+    description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
+    imageUrl: getImageForIndex(3),
+    url: 'https://kazira-io-669567718651.us-west1.run.app/',
+    tags: ['SaaS', 'AI', 'Automation', 'EdTech']
+  },
+  {
+    id: 23,
+    title: 'Crave Cam',
+    description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://cravecam.netlify.app/',
+    tags: ['AI', 'Video', 'Food', 'Marketing']
+  },
+  {
+    id: 22,
+    title: 'Lugha Learner Kenya (Version 2.0)',
+    description: 'The next generation AI-powered assistant for learning Kenyan languages, featuring new lessons and an improved user experience.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://lugha-learner-kenya.vercel.app/',
+    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0']
+  },
+  {
+    id: 21,
+    title: 'Safari Mate - AI Travel Agent',
+    description: 'An AI-powered travel assistant that helps travelers prepare for trips by providing a personalized checklist of requirements to avoid any hiccups.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://ai.studio/apps/drive/1aPrKRXZPWumhaFw7J5rPO4Z-2bRR7yQD',
+    tags: ['AI', 'Travel', 'Assistant', 'Planning']
+  },
+  {
+    id: 20,
+    title: 'KRA Tax Tools - Annual Calculator & WHT Tracker',
+    description: 'Includes a Kenyan Individual Annual Income Tax Calculator and a Withholding Tax (WHT) Tracker with an option to upload WHT certificates for information extraction (experimental).',
+    imageUrl: getImageForIndex(0),
+    url: 'https://tax-calculator-henna-seven.vercel.app/',
+    tags: ['Fintech', 'Tax', 'Kenya', 'Calculator']
+  },
+  {
+    id: 19,
+    title: 'KaziraX Automate - Future of Work',
+    description: 'KaziraX Automate offers intelligent AI solutions to augment and replace declining job roles, boosting efficiency and innovation for businesses.',
+    imageUrl: getImageForIndex(1),
+    url: '#',
+    tags: ['AI', 'Automation', 'Future of Work', 'SaaS']
+  },
+  {
     id: 10,
     title: 'Lugha Learner',
     description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
-    imageUrl: getImageForIndex(1),
-    url: 'https://lugha-smart-kenya.lovable.app/auth',
+    imageUrl: getImageForIndex(2),
+    url: 'https://lugha-learner.vercel.app/',
     tags: ['AI', 'Language', 'Kenya', 'Education']
   },
   {
     id: 7,
     title: 'Kenya MedReg Compliance Assistant',
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
-    imageUrl: getImageForIndex(2),
+    imageUrl: getImageForIndex(3),
     url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
     tags: ['Health', 'Compliance', 'SaaS']
   },
@@ -40,7 +136,7 @@ export const PROJECTS: Project[] = [
     title: 'Networth Portfolio Tracker',
     description: 'A comprehensive tool to track and manage your net worth and investment portfolios in real-time.',
     imageUrl: getImageForIndex(1),
-    url: 'https://net-worth-portfolio-tracker-544721327154.us-west1.run.app',
+    url: 'https://net-worth-portfolio-tracker.vercel.app/',
     tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment']
   },
   {
@@ -48,7 +144,7 @@ export const PROJECTS: Project[] = [
     title: 'KenyaBase Company Explorer',
     description: 'An interactive tool to explore and analyze comprehensive data on Kenyan companies.',
     imageUrl: getImageForIndex(0),
-    url: 'https://kenyabase-company-explorer-209666242867.us-west1.run.app',
+    url: 'https://kenyabase.netlify.app/',
     tags: ['Kenya', 'Business', 'Data', 'Analytics']
   },
   {
@@ -56,7 +152,7 @@ export const PROJECTS: Project[] = [
     title: 'Mwakilishi Wangu',
     description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
     imageUrl: getImageForIndex(3),
-    url: 'https://mwakilishi-wangu-209666242867.us-west1.run.app',
+    url: 'https://mwakilishi-wangu.netlify.app/',
     tags: ['Civic Tech', 'Kenya', 'Governance']
   },
   {
@@ -64,7 +160,7 @@ export const PROJECTS: Project[] = [
     title: 'OralBiohack',
     description: 'A decentralized platform for oral health data and research.',
     imageUrl: getImageForIndex(2),
-    url: 'https://replit.com/@eltonarunga1/OralBiohack?s=app',
+    url: 'https://ai.studio/apps/drive/1mq0wYYSTaB8yFSBS-2PGpEryNmImymDN',
     tags: ['Health', 'Web3', 'Biohacking']
   },
   {
@@ -72,7 +168,7 @@ export const PROJECTS: Project[] = [
     title: 'LandChain Africa',
     description: 'A blockchain-based solution for secure land registry in Africa.',
     imageUrl: getImageForIndex(3),
-    url: 'https://replit.com/@eltonarunga1/LandChainAfrica?s=app',
+    url: 'https://ai.studio/apps/drive/1pfy6_Xj3Oa4GTVsyYBilAUMGSvg-oUWm',
     tags: ['Blockchain', 'Real Estate', 'Web3']
   },
   {
@@ -85,10 +181,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 8,
-    title: 'Digital Art Market',
+    title: 'Art chain',
     description: 'A vibrant marketplace for buying, selling, and discovering unique digital art and collectibles.',
     imageUrl: getImageForIndex(3),
-    url: 'https://replit.com/@eltonarunga1/DigitalArtMarket',
+    url: 'https://art-chain-opal.vercel.app/',
     tags: ['Art', 'Marketplace', 'Web3']
   },
   {
@@ -109,7 +205,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 12,
-    title: 'Kazira,io opal agent',
+    title: 'Kazira.io Job Disruption Scanner (Opal)',
     description: 'An innovative agent built on the Opal platform, designed for intelligent task automation and assistance.',
     imageUrl: getImageForIndex(3),
     url: 'https://opal.withgoogle.com/?flow=drive:/1g5EsPt18QZYsNAcaE1f9KgmCnWOQEvin&shared&mode=app',
@@ -125,10 +221,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 14,
-    title: 'Food Ordering AI Agent',
+    title: 'Cheffie Ai',
     description: 'An AI-powered agent to streamline your food ordering experience, making it faster and more intuitive.',
     imageUrl: getImageForIndex(1),
-    url: 'https://food-ordering-agent-209666242867.us-west1.run.app',
+    url: 'https://cheffie-ai.netlify.app/',
     tags: ['AI', 'Agent', 'Food', 'Automation']
   },
   {
