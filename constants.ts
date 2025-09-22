@@ -160,7 +160,7 @@ export const PROJECTS: Project[] = [
     title: 'Oral Biohacker AI',
     description: 'A decentralized platform for oral health biohacking.',
     imageUrl: getImageForIndex(2),
-    url: 'https://ai.studio/apps/drive/1mq0wYYSTaB8yFSBS-2PGpEryNmImymDN',
+    url: 'https://oral-bio-ai.vercel.app/',
     tags: ['Health', 'Web3', 'Biohacking']
   },
   {
