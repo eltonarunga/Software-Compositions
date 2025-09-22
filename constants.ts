@@ -25,7 +25,8 @@ export const PROJECTS: Project[] = [
     description: 'AI-powered image style reference generators using Google Canvas to inspire creative projects.',
     imageUrl: getImageForIndex(1),
     url: 'https://google-canvas-compos-rqcc.bolt.host/',
-    tags: ['AI', 'Google Canvas', 'Image Generation', 'Art', 'Style Reference']
+    tags: ['AI', 'Google Canvas', 'Image Generation', 'Art', 'Style Reference'],
+    category: 'AI/ML'
   },
   {
     id: 29,
@@ -33,7 +34,8 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered agent to help you discover books, cinema, and movies.',
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1ciylQudDFh8ETGa7hGlB2fnNDzGkEiZZ',
-    tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot']
+    tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot'],
+    category: 'AI/ML'
   },
   {
     id: 28,
@@ -41,7 +43,8 @@ export const PROJECTS: Project[] = [
     description: 'A modern SaaS platform focusing on the future of work, offering intelligent AI solutions to boost efficiency and innovation.',
     imageUrl: getImageForIndex(0),
     url: 'https://kazira-io-saas-landi-3e55.bolt.host/',
-    tags: ['SaaS', 'AI', 'Future of Work', 'Innovation']
+    tags: ['SaaS', 'AI', 'Future of Work', 'Innovation'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 27,
@@ -49,7 +52,8 @@ export const PROJECTS: Project[] = [
     description: 'A web application that allows users to spend Bitcoin via M-Pesa by converting BTC to KES and sending it to a specified M-Pesa recipient (Phone Number, Paybill, or Till Number).',
     imageUrl: getImageForIndex(2),
     url: 'https://btc-mpesa.vercel.app/',
-    tags: ['Bitcoin', 'M-Pesa', 'Fintech', 'Kenya', 'Crypto']
+    tags: ['Bitcoin', 'M-Pesa', 'Fintech', 'Kenya', 'Crypto'],
+    category: 'Fintech & Crypto'
   },
   {
     id: 26,
@@ -57,7 +61,8 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered application that transforms your wardrobe by suggesting new outfits, cataloging your clothes, and helping you discover your personal style.',
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1JEh7KNQUlgDMOGc4heJTBoqQC7kcX6bV',
-    tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant']
+    tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant'],
+    category: 'AI/ML'
   },
   {
     id: 25,
@@ -65,7 +70,8 @@ export const PROJECTS: Project[] = [
     description: 'A web application to display the 28-Day AI Accelerator course, designed to help users master productivity and creativity with AI tools. The app presents the course structure, modules, daily lessons, and learning objectives in an engaging format.',
     imageUrl: getImageForIndex(0),
     url: 'https://nanostrategy.netlify.app/',
-    tags: ['AI', 'Education', 'Productivity', 'Course']
+    tags: ['AI', 'Education', 'Productivity', 'Course'],
+    category: 'Civic & EdTech'
   },
   {
     id: 24,
@@ -73,7 +79,8 @@ export const PROJECTS: Project[] = [
     description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
     imageUrl: getImageForIndex(3),
     url: 'https://kazira-io-669567718651.us-west1.run.app/',
-    tags: ['SaaS', 'AI', 'Automation', 'EdTech']
+    tags: ['SaaS', 'AI', 'Automation', 'EdTech'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 23,
@@ -81,7 +88,8 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
     imageUrl: getImageForIndex(2),
     url: 'https://cravecam.netlify.app/',
-    tags: ['AI', 'Video', 'Food', 'Marketing']
+    tags: ['AI', 'Video', 'Food', 'Marketing'],
+    category: 'Creative & Media'
   },
   {
     id: 22,
@@ -89,7 +97,8 @@ export const PROJECTS: Project[] = [
     description: 'The next generation AI-powered assistant for learning Kenyan languages, featuring new lessons and an improved user experience.',
     imageUrl: getImageForIndex(0),
     url: 'https://lugha-learner-kenya.vercel.app/',
-    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0']
+    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0'],
+    category: 'Civic & EdTech'
   },
   {
     id: 21,
@@ -97,7 +106,8 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered travel assistant that helps travelers prepare for trips by providing a personalized checklist of requirements to avoid any hiccups.',
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1aPrKRXZPWumhaFw7J5rPO4Z-2bRR7yQD',
-    tags: ['AI', 'Travel', 'Assistant', 'Planning']
+    tags: ['AI', 'Travel', 'Assistant', 'Planning'],
+    category: 'AI/ML'
   },
   {
     id: 20,
@@ -105,7 +115,8 @@ export const PROJECTS: Project[] = [
     description: 'Includes a Kenyan Individual Annual Income Tax Calculator and a Withholding Tax (WHT) Tracker with an option to upload WHT certificates for information extraction (experimental).',
     imageUrl: getImageForIndex(0),
     url: 'https://tax-calculator-henna-seven.vercel.app/',
-    tags: ['Fintech', 'Tax', 'Kenya', 'Calculator']
+    tags: ['Fintech', 'Tax', 'Kenya', 'Calculator'],
+    category: 'Fintech & Crypto'
   },
   {
     id: 19,
@@ -113,7 +124,8 @@ export const PROJECTS: Project[] = [
     description: 'KaziraX Automate offers intelligent AI solutions to augment and replace declining job roles, boosting efficiency and innovation for businesses.',
     imageUrl: getImageForIndex(1),
     url: '#',
-    tags: ['AI', 'Automation', 'Future of Work', 'SaaS']
+    tags: ['AI', 'Automation', 'Future of Work', 'SaaS'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 10,
@@ -121,7 +133,8 @@ export const PROJECTS: Project[] = [
     description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
     imageUrl: getImageForIndex(2),
     url: 'https://lugha-learner.vercel.app/',
-    tags: ['AI', 'Language', 'Kenya', 'Education']
+    tags: ['AI', 'Language', 'Kenya', 'Education'],
+    category: 'Civic & EdTech'
   },
   {
     id: 7,
@@ -129,7 +142,8 @@ export const PROJECTS: Project[] = [
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
     imageUrl: getImageForIndex(3),
     url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
-    tags: ['Health', 'Compliance', 'SaaS']
+    tags: ['Health', 'Compliance', 'SaaS'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 16,
@@ -137,7 +151,8 @@ export const PROJECTS: Project[] = [
     description: 'A comprehensive tool to track and manage your net worth and investment portfolios in real-time.',
     imageUrl: getImageForIndex(1),
     url: 'https://net-worth-portfolio-tracker.vercel.app/',
-    tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment']
+    tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment'],
+    category: 'Fintech & Crypto'
   },
   {
     id: 17,
@@ -145,7 +160,8 @@ export const PROJECTS: Project[] = [
     description: 'An interactive tool to explore and analyze comprehensive data on Kenyan companies.',
     imageUrl: getImageForIndex(0),
     url: 'https://kenyabase.netlify.app/',
-    tags: ['Kenya', 'Business', 'Data', 'Analytics']
+    tags: ['Kenya', 'Business', 'Data', 'Analytics'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 18,
@@ -153,15 +169,17 @@ export const PROJECTS: Project[] = [
     description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
     imageUrl: getImageForIndex(3),
     url: 'https://mwakilishi-wangu.netlify.app/',
-    tags: ['Civic Tech', 'Kenya', 'Governance']
+    tags: ['Civic Tech', 'Kenya', 'Governance'],
+    category: 'Civic & EdTech'
   },
   {
     id: 3,
     title: 'Oral Biohacker AI',
     description: 'A decentralized platform for oral health biohacking.',
     imageUrl: getImageForIndex(2),
-    url: 'https://oral-bio-ai.vercel.app/',
-    tags: ['Health', 'Web3', 'Biohacking']
+    url: 'https://oral-biohacker-ai-544721327154.us-west1.run.app/',
+    tags: ['Health', 'Web3', 'Biohacking'],
+    category: 'Web3 & Blockchain'
   },
   {
     id: 4,
@@ -169,7 +187,8 @@ export const PROJECTS: Project[] = [
     description: 'A blockchain-based solution for secure land registry in Africa.',
     imageUrl: getImageForIndex(3),
     url: 'https://ai.studio/apps/drive/1pfy6_Xj3Oa4GTVsyYBilAUMGSvg-oUWm',
-    tags: ['Blockchain', 'Real Estate', 'Web3']
+    tags: ['Blockchain', 'Real Estate', 'Web3'],
+    category: 'Web3 & Blockchain'
   },
   {
     id: 5,
@@ -177,7 +196,8 @@ export const PROJECTS: Project[] = [
     description: 'A platform to facilitate agile and collaborative learning environments.',
     imageUrl: getImageForIndex(0),
     url: 'https://replit.com/@eltonarunga/AgileLearningEcosystem',
-    tags: ['Education', 'Agile', 'Collaboration']
+    tags: ['Education', 'Agile', 'Collaboration'],
+    category: 'Civic & EdTech'
   },
   {
     id: 8,
@@ -185,7 +205,8 @@ export const PROJECTS: Project[] = [
     description: 'A vibrant marketplace for buying, selling, and discovering unique digital art and collectibles.',
     imageUrl: getImageForIndex(3),
     url: 'https://art-chain-opal.vercel.app/',
-    tags: ['Art', 'Marketplace', 'Web3']
+    tags: ['Art', 'Marketplace', 'Web3'],
+    category: 'Web3 & Blockchain'
   },
   {
     id: 9,
@@ -193,7 +214,8 @@ export const PROJECTS: Project[] = [
     description: 'A collection of creative and aesthetically pleasing coding projects.',
     imageUrl: getImageForIndex(0),
     url: 'https://irdoujhu.manus.space/',
-    tags: ['Creative Coding', 'Portfolio', 'Art']
+    tags: ['Creative Coding', 'Portfolio', 'Art'],
+    category: 'Creative & Media'
   },
   {
     id: 11,
@@ -201,7 +223,8 @@ export const PROJECTS: Project[] = [
     description: 'A real-time dashboard to monitor and manage industrial mining operations.',
     imageUrl: getImageForIndex(2),
     url: 'https://aeejbufd.manus.space/',
-    tags: ['Industrial', 'Dashboard', 'Operations', 'Real-time']
+    tags: ['Industrial', 'Dashboard', 'Operations', 'Real-time'],
+    category: 'SaaS & Platforms'
   },
   {
     id: 12,
@@ -209,7 +232,8 @@ export const PROJECTS: Project[] = [
     description: 'An innovative agent built on the Opal platform, designed for intelligent task automation and assistance.',
     imageUrl: getImageForIndex(3),
     url: 'https://opal.withgoogle.com/?flow=drive:/1g5EsPt18QZYsNAcaE1f9KgmCnWOQEvin&shared&mode=app',
-    tags: ['AI', 'Agent', 'Opal', 'Automation']
+    tags: ['AI', 'Agent', 'Opal', 'Automation'],
+    category: 'AI/ML'
   },
   {
     id: 13,
@@ -217,7 +241,8 @@ export const PROJECTS: Project[] = [
     description: 'A comprehensive agricultural platform that combines AI, blockchain, and DeFi to empower farmers with asset verification, intelligent farming assistance, microfinance access, supply chain tracking, and a community marketplace.',
     imageUrl: getImageForIndex(0),
     url: 'https://app--agri-proof-x-1936b50a.base44.app',
-    tags: ['AI', 'Blockchain', 'DeFi', 'Agriculture', 'Fintech']
+    tags: ['AI', 'Blockchain', 'DeFi', 'Agriculture', 'Fintech'],
+    category: 'Fintech & Crypto'
   },
   {
     id: 14,
@@ -225,7 +250,8 @@ export const PROJECTS: Project[] = [
     description: 'An AI-powered agent to streamline your food ordering experience, making it faster and more intuitive.',
     imageUrl: getImageForIndex(1),
     url: 'https://cheffie-ai.netlify.app/',
-    tags: ['AI', 'Agent', 'Food', 'Automation']
+    tags: ['AI', 'Agent', 'Food', 'Automation'],
+    category: 'AI/ML'
   },
   {
     id: 15,
@@ -233,7 +259,8 @@ export const PROJECTS: Project[] = [
     description: 'AI-powered music and audio compositions exploring the frontiers of generative art.',
     imageUrl: getImageForIndex(2),
     url: 'https://suno.com/@earunga',
-    tags: ['AI', 'Music', 'Audio', 'Generative']
+    tags: ['AI', 'Music', 'Audio', 'Generative'],
+    category: 'Creative & Media'
   },
   {
     id: 1,
@@ -241,6 +268,7 @@ export const PROJECTS: Project[] = [
     description: 'Enhance your video prompts with the power of generative AI.',
     imageUrl: getImageForIndex(0),
     url: 'https://gemini.google.com/share/6a3c09ed6a3f?hl=en-GB',
-    tags: ['AI', 'Gemini', 'Video']
+    tags: ['AI', 'Gemini', 'Video'],
+    category: 'Creative & Media'
   }
 ];
