@@ -10,18 +10,6 @@ type SortBy = 'id' | 'title';
 type SortOrder = 'asc' | 'desc';
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      // Ensure the saved theme is a valid value before using it
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        return savedTheme;
-      }
-    }
-    // Default to dark if no valid theme is saved
-    return 'dark';
-  });
-  
   const [sortBy, setSortBy] = useState<SortBy>('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -31,16 +19,6 @@ const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   // Debounce search input to improve performance
   useEffect(() => {
@@ -52,10 +30,6 @@ const App: React.FC = () => {
       clearTimeout(timerId);
     };
   }, [searchTerm]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -139,13 +113,13 @@ const App: React.FC = () => {
     `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform ${
       isActive
         ? 'bg-cyan-500 text-white border-cyan-500 shadow-md scale-105'
-        : 'bg-gray-200 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600/80 hover:border-gray-400 dark:hover:border-gray-500 hover:scale-110'
+        : 'bg-gray-700/80 text-gray-300 border-gray-600 hover:bg-gray-600/80 hover:border-gray-500 hover:scale-110'
     }`;
 
   return (
-    <div className="min-h-screen text-gray-800 dark:text-white selection:bg-cyan-500 selection:text-white transition-colors duration-300">
+    <div className="min-h-screen text-white selection:bg-cyan-500 selection:text-white transition-colors duration-300">
       <div 
-        className="absolute inset-0 z-0 opacity-10 dark:opacity-20" 
+        className="absolute inset-0 z-0 opacity-20" 
         style={{backgroundImage: 'radial-gradient(#4a5568 1px, transparent 1px)', backgroundSize: '20px 20px'}}
       ></div>
       <main className="relative z-10 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
@@ -153,37 +127,37 @@ const App: React.FC = () => {
           <img
             src={avatarDataUri}
             alt="Profile Avatar"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-4 border-4 border-gray-300 dark:border-gray-700 shadow-lg"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-4 border-4 border-gray-700 shadow-lg"
           />
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">Software Compositions by EArunga</h1>
-          <p className="text-md sm:text-lg text-gray-500 dark:text-gray-400 mt-2">Curator of digital aesthetics & functional art.</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-100">Software Compositions by EArunga</h1>
+          <p className="text-md sm:text-lg text-gray-400 mt-2">Curator of digital aesthetics & functional art.</p>
         </header>
         
-        <section className="w-full max-w-4xl mb-10 bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-lg p-6 sm:p-8">
+        <section className="w-full max-w-4xl mb-10 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
             <img 
               src={avatarDataUri} 
               alt="EArunga's profile picture" 
-              className="w-32 h-32 rounded-full border-4 border-gray-300 dark:border-gray-700 flex-shrink-0 shadow-lg"
+              className="w-32 h-32 rounded-full border-4 border-gray-700 flex-shrink-0 shadow-lg"
             />
             <div>
-              <h2 className="text-2xl font-bold text-cyan-500 dark:text-cyan-400 mb-3">About Me</h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">About Me</h2>
+              <p className="text-gray-300 leading-relaxed">
                 I'm a software composer passionate about building intelligent, user-centric applications at the intersection of clean code, intuitive UI/UX, and the transformative power of AI.
               </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">
+              <p className="text-gray-300 leading-relaxed mt-3">
                 This collection represents my journey through various technologies and creative challenges. Feel free to explore the projects and connect with me.
               </p>
             </div>
           </div>
         </section>
 
-        <div className="w-full max-w-7xl mb-8 p-4 bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-lg">
+        <div className="w-full max-w-7xl mb-8 p-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg">
           <div className="w-full mb-4">
             <label htmlFor="project-search" className="sr-only">Search projects by title or description</label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
-                <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -193,13 +167,13 @@ const App: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search projects..."
-                className="w-full bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-md pl-10 pr-4 py-2 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+                className="w-full bg-gray-900/50 border border-gray-600 rounded-md pl-10 pr-4 py-2 text-sm text-gray-200 placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
               />
             </div>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
             <div className="flex items-center gap-3">
-              <span id="sort-by-label" className="font-semibold text-gray-600 dark:text-gray-300">Sort by:</span>
+              <span id="sort-by-label" className="font-semibold text-gray-300">Sort by:</span>
               <div className="flex space-x-2" role="radiogroup" aria-labelledby="sort-by-label">
                 <label>
                   <input
@@ -213,7 +187,7 @@ const App: React.FC = () => {
                   <span className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
                     sortBy === 'id'
                       ? 'bg-cyan-500 text-white shadow'
-                      : 'bg-gray-200 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600/80'
+                      : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
                   }`}>
                     Date Added
                   </span>
@@ -230,7 +204,7 @@ const App: React.FC = () => {
                   <span className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
                     sortBy === 'title'
                       ? 'bg-cyan-500 text-white shadow'
-                      : 'bg-gray-200 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600/80'
+                      : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
                   }`}>
                     Title
                   </span>
@@ -239,10 +213,10 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="font-semibold text-gray-600 dark:text-gray-300">Order:</span>
+              <span className="font-semibold text-gray-300">Order:</span>
               <button
                 onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 bg-gray-200 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600/80"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 bg-gray-700/80 text-gray-300 hover:bg-gray-600/80"
                 aria-live="polite"
                 aria-label={`Current order: ${sortOrder}. Toggle to ${sortOrder === 'asc' ? 'descending' : 'ascending'}`}
               >
@@ -262,10 +236,10 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700/50">
+          <div className="mt-6 pt-4 border-t border-gray-700/50">
              <button
               onClick={() => setIsCategoryFilterVisible(!isCategoryFilterVisible)}
-              className="w-full flex justify-between items-center text-left font-semibold text-gray-600 dark:text-gray-300 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200"
+              className="w-full flex justify-between items-center text-left font-semibold text-gray-300 p-2 rounded-md hover:bg-gray-700/50 transition-colors duration-200"
               aria-expanded={isCategoryFilterVisible}
               aria-controls="category-filter-panel"
             >
@@ -290,7 +264,7 @@ const App: React.FC = () => {
                             className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
                                 selectedCategory === category
                                     ? 'bg-cyan-500 text-white shadow'
-                                    : 'bg-gray-200 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600/80'
+                                    : 'bg-gray-700/80 text-gray-300 hover:bg-gray-600/80'
                             }`}
                             aria-pressed={selectedCategory === category}
                         >
@@ -302,10 +276,10 @@ const App: React.FC = () => {
             )}
           </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700/50">
+          <div className="mt-4 pt-4 border-t border-gray-700/50">
             <button
               onClick={() => setIsTagFilterVisible(!isTagFilterVisible)}
-              className="w-full flex justify-between items-center text-left font-semibold text-gray-600 dark:text-gray-300 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200"
+              className="w-full flex justify-between items-center text-left font-semibold text-gray-300 p-2 rounded-md hover:bg-gray-700/50 transition-colors duration-200"
               aria-expanded={isTagFilterVisible}
               aria-controls="tag-filter-panel"
             >
@@ -329,7 +303,7 @@ const App: React.FC = () => {
                     value={tagSearchTerm}
                     onChange={(e) => setTagSearchTerm(e.target.value)}
                     placeholder="Search tags..."
-                    className="w-full bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-600 rounded-md px-3 py-2 text-sm text-gray-200 placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
                     aria-label="Search for a tag"
                   />
                 </div>
@@ -347,7 +321,7 @@ const App: React.FC = () => {
                   {selectedTags.length > 0 && (
                     <button
                       onClick={handleClearTags}
-                      className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 border border-red-500/50 text-red-500 dark:text-red-400 hover:bg-red-500/10 dark:hover:bg-red-500/20"
+                      className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 border border-red-500/50 text-red-400 hover:bg-red-500/20"
                       aria-label="Clear selected tags"
                     >
                       Clear
@@ -369,35 +343,18 @@ const App: React.FC = () => {
         </div>
 
         <footer className="mt-12 text-center text-gray-500 text-sm">
-          <div className="flex justify-center mb-6">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 shadow-lg hover:scale-110 transition-all duration-200"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              {theme === 'dark' ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-          </div>
           <div className="flex justify-center space-x-6 mb-4">
-            <a href="https://github.com/eltonarunga" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-gray-500 dark:text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://github.com/eltonarunga" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" />
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/elton-arunga-80405811b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="text-gray-500 dark:text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://www.linkedin.com/in/elton-arunga-80405811b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
-            <a href="https://x.com/E_Arunga" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter" className="text-gray-500 dark:text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+            <a href="https://x.com/E_Arunga" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.65.177-1.353.23-2.064.077.608 1.881 2.372 3.256 4.465 3.293-1.711 1.341-3.869 2.143-6.217 2.143-.404 0-.802-.023-1.195-.07 2.206 1.414 4.833 2.239 7.646 2.239 9.178 0 14.207-7.603 13.882-14.536 1.033-.745 1.91-1.685 2.62-2.74z" />
                 </svg>
