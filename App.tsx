@@ -13,12 +13,13 @@ const App: React.FC = () => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) return savedTheme;
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
+      // Ensure the saved theme is a valid value before using it
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
       }
     }
-    return 'light';
+    // Default to dark if no valid theme is saved
+    return 'dark';
   });
   
   const [sortBy, setSortBy] = useState<SortBy>('id');
@@ -28,14 +29,29 @@ const App: React.FC = () => {
   const [isCategoryFilterVisible, setIsCategoryFilterVisible] = useState(false);
   const [tagSearchTerm, setTagSearchTerm] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const isDark = theme === 'dark';
-    root.classList.toggle('dark', isDark);
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  // Debounce search input to improve performance
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300); // 300ms delay
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchTerm]);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -66,14 +82,26 @@ const App: React.FC = () => {
     setTagSearchTerm('');
   };
 
-  const filteredAndSortedProjects = useMemo(() => {
-    const lowercasedSearchTerm = searchTerm.toLowerCase();
+  // Fuzzy search function to allow for more forgiving searches
+  const fuzzySearch = (query: string, text: string): boolean => {
+    const searchQuery = query.toLowerCase().replace(/\s/g, '');
+    if (!searchQuery) return true;
+    const textToSearch = text.toLowerCase();
+    let searchIndex = 0;
+    for (let i = 0; i < textToSearch.length && searchIndex < searchQuery.length; i++) {
+        if (textToSearch[i] === searchQuery[searchIndex]) {
+            searchIndex++;
+        }
+    }
+    return searchIndex === searchQuery.length;
+  };
 
-    const searched = searchTerm.trim() === ''
+  const filteredAndSortedProjects = useMemo(() => {
+    const searched = debouncedSearchTerm.trim() === ''
       ? PROJECTS
       : PROJECTS.filter(project =>
-          project.title.toLowerCase().includes(lowercasedSearchTerm) ||
-          project.description.toLowerCase().includes(lowercasedSearchTerm)
+          fuzzySearch(debouncedSearchTerm, project.title) ||
+          fuzzySearch(debouncedSearchTerm, project.description)
         );
         
     const filteredByCategory = selectedCategory === 'All'
@@ -96,7 +124,7 @@ const App: React.FC = () => {
     }
 
     return sorted;
-  }, [sortBy, sortOrder, selectedTags, searchTerm, selectedCategory]);
+  }, [sortBy, sortOrder, selectedTags, debouncedSearchTerm, selectedCategory]);
   
   const visibleTags = useMemo(() => {
     if (!tagSearchTerm) {
@@ -241,7 +269,7 @@ const App: React.FC = () => {
               aria-expanded={isCategoryFilterVisible}
               aria-controls="category-filter-panel"
             >
-              <span>
+              <span id="category-filter-label">
                 Filter by Category {selectedCategory !== 'All' && `(${selectedCategory})`}
               </span>
               <svg 

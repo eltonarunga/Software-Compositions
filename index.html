@@ -15,10 +15,11 @@
     </style>
     <script>
       // Set theme on initial load to prevent FOUC (Flash of Unstyled Content)
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
+      // Default to dark theme, but respect user's choice.
+      if (localStorage.theme === 'light') {
+        document.documentElement.classList.remove('dark');
       } else {
-        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.add('dark');
       }
     </script>
   <script type="importmap">
