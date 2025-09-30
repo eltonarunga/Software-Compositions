@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 27,
-    title: 'BTC-MPesa',
+    title: 'BTC - Mpesa Demo',
     description: 'A web application that allows users to spend Bitcoin via M-Pesa by converting BTC to KES and sending it to a specified M-Pesa recipient (Phone Number, Paybill, or Till Number).',
     imageUrl: getImageForIndex(2),
     url: 'https://btc-mpesa.vercel.app/',
@@ -123,12 +123,12 @@ export const PROJECTS: Project[] = [
     title: 'KaziraX Automate - Future of Work',
     description: 'KaziraX Automate offers intelligent AI solutions to augment and replace declining job roles, boosting efficiency and innovation for businesses.',
     imageUrl: getImageForIndex(1),
-    url: '#',
+    url: 'https://kazirax.netlify.app/',
     tags: ['AI', 'Automation', 'Future of Work', 'SaaS'],
     category: 'SaaS & Platforms'
   },
   {
-    id: 10,
+    id: 101,
     title: 'Lugha Learner',
     description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
     imageUrl: getImageForIndex(2),
@@ -137,7 +137,7 @@ export const PROJECTS: Project[] = [
     category: 'Civic & EdTech'
   },
   {
-    id: 7,
+    id: 102,
     title: 'Kenya MedReg Compliance Assistant',
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
     imageUrl: getImageForIndex(3),
@@ -164,7 +164,7 @@ export const PROJECTS: Project[] = [
     category: 'SaaS & Platforms'
   },
   {
-    id: 18,
+    id: 100,
     title: 'Mwakilishi Wangu',
     description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
     imageUrl: getImageForIndex(3),
@@ -173,7 +173,7 @@ export const PROJECTS: Project[] = [
     category: 'Civic & EdTech'
   },
   {
-    id: 3,
+    id: 103,
     title: 'Oral Biohacker AI',
     description: 'A decentralized platform for oral health biohacking.',
     imageUrl: getImageForIndex(2),
