@@ -90,7 +90,7 @@ const App: React.FC = () => {
       if (sortBy === 'title') {
         return a.title.localeCompare(b.title);
       }
-      return a.id - b.id;
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
 
     if (sortOrder === 'desc') {

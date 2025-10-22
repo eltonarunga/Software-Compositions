@@ -5,16 +5,33 @@ interface LinkCardProps {
   project: Project;
 }
 
+const isNewProject = (createdAtDate: string): boolean => {
+  const [year, month, day] = createdAtDate.split('-').map(Number);
+  const projectDate = new Date(year, month - 1, day);
+
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setHours(0, 0, 0, 0);
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+
+  return projectDate >= sevenDaysAgo;
+};
+
 const LinkCard: React.FC<LinkCardProps> = ({ project }) => {
-  const { title, description, imageUrl, url, tags } = project;
+  const { title, description, imageUrl, url, tags, createdAt } = project;
+  const isNew = createdAt && isNewProject(createdAt);
 
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-500/50 overflow-hidden"
+      className="group relative flex flex-col h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-500/50 overflow-hidden"
     >
+      {isNew && (
+        <span className="absolute top-3 right-3 z-10 bg-cyan-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg animate-pulse">
+          NEW
+        </span>
+      )}
       <img
         src={imageUrl}
         alt={title}

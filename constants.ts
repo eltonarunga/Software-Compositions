@@ -26,7 +26,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://google-canvas-compos-rqcc.bolt.host/',
     tags: ['AI', 'Google Canvas', 'Image Generation', 'Art', 'Style Reference'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2024-07-25',
   },
   {
     id: 29,
@@ -35,7 +36,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1ciylQudDFh8ETGa7hGlB2fnNDzGkEiZZ',
     tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2024-07-23',
   },
   {
     id: 28,
@@ -44,7 +46,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://kazira-io-saas-landi-3e55.bolt.host/',
     tags: ['SaaS', 'AI', 'Future of Work', 'Innovation'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2024-07-21',
   },
   {
     id: 27,
@@ -53,7 +56,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://btc-mpesa.vercel.app/',
     tags: ['Bitcoin', 'M-Pesa', 'Fintech', 'Kenya', 'Crypto'],
-    category: 'Fintech & Crypto'
+    category: 'Fintech & Crypto',
+    createdAt: '2024-07-10',
   },
   {
     id: 26,
@@ -62,7 +66,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1JEh7KNQUlgDMOGc4heJTBoqQC7kcX6bV',
     tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2024-07-05',
   },
   {
     id: 25,
@@ -71,7 +76,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://nanostrategy.netlify.app/',
     tags: ['AI', 'Education', 'Productivity', 'Course'],
-    category: 'Civic & EdTech'
+    category: 'Civic & EdTech',
+    createdAt: '2024-07-01',
   },
   {
     id: 24,
@@ -80,7 +86,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://kazira-io-669567718651.us-west1.run.app/',
     tags: ['SaaS', 'AI', 'Automation', 'EdTech'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2024-06-28',
   },
   {
     id: 23,
@@ -89,7 +96,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://cravecam.netlify.app/',
     tags: ['AI', 'Video', 'Food', 'Marketing'],
-    category: 'Creative & Media'
+    category: 'Creative & Media',
+    createdAt: '2024-06-25',
   },
   {
     id: 22,
@@ -98,7 +106,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://lugha-learner-kenya.vercel.app/',
     tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0'],
-    category: 'Civic & EdTech'
+    category: 'Civic & EdTech',
+    createdAt: '2024-06-20',
   },
   {
     id: 21,
@@ -107,7 +116,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://ai.studio/apps/drive/1aPrKRXZPWumhaFw7J5rPO4Z-2bRR7yQD',
     tags: ['AI', 'Travel', 'Assistant', 'Planning'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2024-06-18',
   },
   {
     id: 20,
@@ -116,7 +126,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://tax-calculator-henna-seven.vercel.app/',
     tags: ['Fintech', 'Tax', 'Kenya', 'Calculator'],
-    category: 'Fintech & Crypto'
+    category: 'Fintech & Crypto',
+    createdAt: '2024-06-15',
   },
   {
     id: 19,
@@ -125,7 +136,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://kazirax.netlify.app/',
     tags: ['AI', 'Automation', 'Future of Work', 'SaaS'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2024-06-12',
   },
   {
     id: 101,
@@ -134,7 +146,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://lugha-learner.vercel.app/',
     tags: ['AI', 'Language', 'Kenya', 'Education'],
-    category: 'Civic & EdTech'
+    category: 'Civic & EdTech',
+    createdAt: '2024-03-10',
   },
   {
     id: 102,
@@ -143,7 +156,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
     tags: ['Health', 'Compliance', 'SaaS'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2024-03-08',
   },
   {
     id: 16,
@@ -152,7 +166,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://net-worth-portfolio-tracker.vercel.app/',
     tags: ['Fintech', 'Portfolio', 'Tracker', 'Investment'],
-    category: 'Fintech & Crypto'
+    category: 'Fintech & Crypto',
+    createdAt: '2024-02-05',
   },
   {
     id: 17,
@@ -161,7 +176,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://kenyabase.netlify.app/',
     tags: ['Kenya', 'Business', 'Data', 'Analytics'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2024-02-01',
   },
   {
     id: 100,
@@ -170,7 +186,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://mwakilishi-wangu.netlify.app/',
     tags: ['Civic Tech', 'Kenya', 'Governance'],
-    category: 'Civic & EdTech'
+    category: 'Civic & EdTech',
+    createdAt: '2024-01-28',
   },
   {
     id: 103,
@@ -179,7 +196,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app',
     tags: ['Health', 'Web3', 'Biohacking'],
-    category: 'Web3 & Blockchain'
+    category: 'Web3 & Blockchain',
+    createdAt: '2024-01-25',
   },
   {
     id: 4,
@@ -188,7 +206,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://ai.studio/apps/drive/1pfy6_Xj3Oa4GTVsyYBilAUMGSvg-oUWm',
     tags: ['Blockchain', 'Real Estate', 'Web3'],
-    category: 'Web3 & Blockchain'
+    category: 'Web3 & Blockchain',
+    createdAt: '2023-12-22',
   },
   {
     id: 5,
@@ -197,7 +216,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://replit.com/@eltonarunga/AgileLearningEcosystem',
     tags: ['Education', 'Agile', 'Collaboration'],
-    category: 'Civic & EdTech'
+    category: 'Civic & EdTech',
+    createdAt: '2023-12-20',
   },
   {
     id: 8,
@@ -206,7 +226,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://art-chain-opal.vercel.app/',
     tags: ['Art', 'Marketplace', 'Web3'],
-    category: 'Web3 & Blockchain'
+    category: 'Web3 & Blockchain',
+    createdAt: '2023-11-18',
   },
   {
     id: 9,
@@ -215,7 +236,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://irdoujhu.manus.space/',
     tags: ['Creative Coding', 'Portfolio', 'Art'],
-    category: 'Creative & Media'
+    category: 'Creative & Media',
+    createdAt: '2023-11-15',
   },
   {
     id: 11,
@@ -224,7 +246,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://aeejbufd.manus.space/',
     tags: ['Industrial', 'Dashboard', 'Operations', 'Real-time'],
-    category: 'SaaS & Platforms'
+    category: 'SaaS & Platforms',
+    createdAt: '2023-10-12',
   },
   {
     id: 12,
@@ -233,7 +256,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(3),
     url: 'https://opal.withgoogle.com/?flow=drive:/1g5EsPt18QZYsNAcaE1f9KgmCnWOQEvin&shared&mode=app',
     tags: ['AI', 'Agent', 'Opal', 'Automation'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2023-10-10',
   },
   {
     id: 13,
@@ -242,7 +266,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://app--agri-proof-x-1936b50a.base44.app',
     tags: ['AI', 'Blockchain', 'DeFi', 'Agriculture', 'Fintech'],
-    category: 'Fintech & Crypto'
+    category: 'Fintech & Crypto',
+    createdAt: '2023-09-08',
   },
   {
     id: 14,
@@ -251,7 +276,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(1),
     url: 'https://cheffie-ai.netlify.app/',
     tags: ['AI', 'Agent', 'Food', 'Automation'],
-    category: 'AI/ML'
+    category: 'AI/ML',
+    createdAt: '2023-09-05',
   },
   {
     id: 15,
@@ -260,7 +286,8 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(2),
     url: 'https://suno.com/@earunga',
     tags: ['AI', 'Music', 'Audio', 'Generative'],
-    category: 'Creative & Media'
+    category: 'Creative & Media',
+    createdAt: '2023-08-01',
   },
   {
     id: 1,
@@ -269,6 +296,7 @@ export const PROJECTS: Project[] = [
     imageUrl: getImageForIndex(0),
     url: 'https://gemini.google.com/share/6a3c09ed6a3f?hl=en-GB',
     tags: ['AI', 'Gemini', 'Video'],
-    category: 'Creative & Media'
+    category: 'Creative & Media',
+    createdAt: '2023-07-28',
   }
 ];

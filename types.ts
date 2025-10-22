@@ -7,4 +7,5 @@ export interface Project {
   url: string;
   tags: string[];
   category: string;
+  createdAt: string;
 }
