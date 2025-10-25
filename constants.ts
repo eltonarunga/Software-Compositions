@@ -194,7 +194,7 @@ export const PROJECTS: Project[] = [
     title: 'Oral Biohacker AI',
     description: 'A decentralized platform for oral health biohacking.',
     imageUrl: getImageForIndex(2),
-    url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app',
+    url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app/',
     tags: ['Health', 'Web3', 'Biohacking'],
     category: 'Web3 & Blockchain',
     createdAt: '2024-01-25',
