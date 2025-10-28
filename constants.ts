@@ -4,14 +4,15 @@ const svgToDataUri = (svg: string) => `data:image/svg+xml;charset=utf-8,${encode
 
 const svgDesigns = [
   // Design 1: Cosmic Waves
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0891b2"/><stop offset="100%" stop-color="#67e8f9"/></linearGradient></defs><rect width="400" height="400" fill="#111827"/><path d="M0 200 C 100 100, 300 300, 400 200" stroke="url(#g1)" stroke-width="3" fill="none" opacity="0.6"/><path d="M0 250 C 150 180, 250 320, 400 250" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.4"/></svg>`,
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00E0FF"/><stop offset="100%" stop-color="#7E57C2"/></linearGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><path d="M0 200 C 100 100, 300 300, 400 200" stroke="url(#g1)" stroke-width="3" fill="none" opacity="0.6"/><path d="M0 250 C 150 180, 250 320, 400 250" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.4"/></svg>`,
   // Design 2: Geo Prism
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5b21b6"/><stop offset="100%" stop-color="#c084fc"/></linearGradient></defs><rect width="400" height="400" fill="#111827"/><g transform="rotate(45 200 200)" opacity="0.5"><rect x="100" y="100" width="200" height="200" fill="none" stroke="url(#g2)" stroke-width="4" rx="10"/></g><g transform="rotate(-30 200 200)" opacity="0.3"><rect x="125" y="125" width="150" height="150" fill="none" stroke="url(#g2)" stroke-width="2" rx="5"/></g></svg>`,
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7E57C2"/><stop offset="100%" stop-color="#B0BEC5"/></linearGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><g transform="rotate(45 200 200)" opacity="0.5"><rect x="100" y="100" width="200" height="200" fill="none" stroke="url(#g2)" stroke-width="4" rx="10"/></g><g transform="rotate(-30 200 200)" opacity="0.3"><rect x="125" y="125" width="150" height="150" fill="none" stroke="url(#g2)" stroke-width="2" rx="5"/></g></svg>`,
   // Design 3: Nebula Cloud
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><filter id="f1"><feGaussianBlur in="SourceGraphic" stdDeviation="50" /></filter><radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0d9488" stop-opacity="0.8"/><stop offset="100%" stop-color="#0d9488" stop-opacity="0"/></radialGradient></defs><rect width="400" height="400" fill="#111827"/><circle cx="200" cy="200" r="200" fill="url(#g3)" filter="url(#f1)"/></svg>`,
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><filter id="f1"><feGaussianBlur in="SourceGraphic" stdDeviation="50" /></filter><radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E0FF" stop-opacity="0.8"/><stop offset="100%" stop-color="#0A0F1F" stop-opacity="0"/></radialGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><circle cx="200" cy="200" r="200" fill="url(#g3)" filter="url(#f1)"/></svg>`,
   // Design 4: Circuit Board
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p1" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 h20 v20 h-20 z M20 0 v10 h20 v-10 z" stroke="#047857" stroke-width="1" fill="none" opacity="0.3"/></pattern></defs><rect width="400" height="400" fill="#111827"/><rect width="400" height="400" fill="url(#p1)"/></svg>`,
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p1" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 h20 v20 h-20 z M20 0 v10 h20 v-10 z" stroke="#B0BEC5" stroke-width="1" fill="none" opacity="0.3"/></pattern></defs><rect width="400" height="400" fill="#0A0F1F"/><rect width="400" height="400" fill="url(#p1)"/></svg>`,
 ];
+
 
 const getImageForIndex = (index: number) => {
   return svgToDataUri(svgDesigns[index % svgDesigns.length]);
@@ -19,6 +20,56 @@ const getImageForIndex = (index: number) => {
 
 
 export const PROJECTS: Project[] = [
+  {
+    id: 31,
+    title: 'Oral Biohacker AI',
+    description: 'Hack your oral and systemic health with AI-driven insights, biometrics, and personalized habit design.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app/',
+    tags: ['AI', 'Health', 'Biohacking', 'Biometrics', 'Wellness'],
+    category: 'AI/ML',
+    createdAt: '2024-07-26',
+  },
+  {
+    id: 101,
+    title: 'Lugha Learner',
+    description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://lugha-learner.vercel.app/',
+    tags: ['AI', 'Language', 'Kenya', 'Education'],
+    category: 'Civic & EdTech',
+    createdAt: '2024-03-10',
+  },
+  {
+    id: 22,
+    title: 'Lugha Learner Kenya (Version 2.0)',
+    description: 'The next generation AI-powered assistant for learning Kenyan languages, featuring new lessons and an improved user experience.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://lugha-learner-kenya.vercel.app/',
+    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0'],
+    category: 'Civic & EdTech',
+    createdAt: '2024-06-20',
+  },
+  {
+    id: 24,
+    title: 'Kazira.io',
+    description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
+    imageUrl: getImageForIndex(3),
+    url: 'https://kazira-io-669567718651.us-west1.run.app/',
+    tags: ['SaaS', 'AI', 'Automation', 'EdTech'],
+    category: 'SaaS & Platforms',
+    createdAt: '2024-06-28',
+  },
+  {
+    id: 100,
+    title: 'Mwakilishi Wangu',
+    description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
+    imageUrl: getImageForIndex(3),
+    url: 'https://mwakilishi-wangu.netlify.app/',
+    tags: ['Civic Tech', 'Kenya', 'Governance'],
+    category: 'Civic & EdTech',
+    createdAt: '2024-01-28',
+  },
   {
     id: 30,
     title: 'Google Canvas Compositions',
@@ -80,16 +131,6 @@ export const PROJECTS: Project[] = [
     createdAt: '2024-07-01',
   },
   {
-    id: 24,
-    title: 'Kazira.io',
-    description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
-    imageUrl: getImageForIndex(3),
-    url: 'https://kazira-io-669567718651.us-west1.run.app/',
-    tags: ['SaaS', 'AI', 'Automation', 'EdTech'],
-    category: 'SaaS & Platforms',
-    createdAt: '2024-06-28',
-  },
-  {
     id: 23,
     title: 'Crave Cam',
     description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
@@ -98,16 +139,6 @@ export const PROJECTS: Project[] = [
     tags: ['AI', 'Video', 'Food', 'Marketing'],
     category: 'Creative & Media',
     createdAt: '2024-06-25',
-  },
-  {
-    id: 22,
-    title: 'Lugha Learner Kenya (Version 2.0)',
-    description: 'The next generation AI-powered assistant for learning Kenyan languages, featuring new lessons and an improved user experience.',
-    imageUrl: getImageForIndex(0),
-    url: 'https://lugha-learner-kenya.vercel.app/',
-    tags: ['AI', 'Language', 'Kenya', 'Education', 'V2.0'],
-    category: 'Civic & EdTech',
-    createdAt: '2024-06-20',
   },
   {
     id: 21,
@@ -140,16 +171,6 @@ export const PROJECTS: Project[] = [
     createdAt: '2024-06-12',
   },
   {
-    id: 101,
-    title: 'Lugha Learner',
-    description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
-    imageUrl: getImageForIndex(2),
-    url: 'https://lugha-learner.vercel.app/',
-    tags: ['AI', 'Language', 'Kenya', 'Education'],
-    category: 'Civic & EdTech',
-    createdAt: '2024-03-10',
-  },
-  {
     id: 102,
     title: 'Kenya MedReg Compliance Assistant',
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
@@ -178,26 +199,6 @@ export const PROJECTS: Project[] = [
     tags: ['Kenya', 'Business', 'Data', 'Analytics'],
     category: 'SaaS & Platforms',
     createdAt: '2024-02-01',
-  },
-  {
-    id: 100,
-    title: 'Mwakilishi Wangu',
-    description: 'A platform connecting Kenyan citizens with their elected representatives for enhanced civic engagement.',
-    imageUrl: getImageForIndex(3),
-    url: 'https://mwakilishi-wangu.netlify.app/',
-    tags: ['Civic Tech', 'Kenya', 'Governance'],
-    category: 'Civic & EdTech',
-    createdAt: '2024-01-28',
-  },
-  {
-    id: 103,
-    title: 'Oral Biohacker AI',
-    description: 'A decentralized platform for oral health biohacking.',
-    imageUrl: getImageForIndex(2),
-    url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app/',
-    tags: ['Health', 'Web3', 'Biohacking'],
-    category: 'Web3 & Blockchain',
-    createdAt: '2024-01-25',
   },
   {
     id: 4,

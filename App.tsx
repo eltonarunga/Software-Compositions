@@ -10,7 +10,7 @@ type SortBy = 'id' | 'title';
 type SortOrder = 'asc' | 'desc';
 
 const App: React.FC = () => {
-  const [sortBy, setSortBy] = useState<SortBy>('id');
+  const [sortBy, setSortBy] = useState<SortBy | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isTagFilterVisible, setIsTagFilterVisible] = useState(false);
@@ -85,6 +85,10 @@ const App: React.FC = () => {
     const filteredByTags = selectedTags.length === 0
       ? filteredByCategory
       : filteredByCategory.filter(project => project.tags.some(tag => selectedTags.includes(tag)));
+
+    if (sortBy === null) {
+      return filteredByTags;
+    }
 
     const sorted = [...filteredByTags].sort((a, b) => {
       if (sortBy === 'title') {
