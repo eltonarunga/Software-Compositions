@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
     title: 'LandChain Africa',
     description: 'A blockchain-based solution for secure land registry in Africa.',
     imageUrl: getImageForIndex(3),
-    url: 'https://ai.studio/apps/drive/1pfy6_Xj3Oa4GTVsyYBilAUMGSvg-oUWm',
+    url: 'https://land-chain-africa.vercel.app/',
     tags: ['Blockchain', 'Real Estate', 'Web3'],
     category: 'Web3 & Blockchain',
     createdAt: '2023-12-22',
