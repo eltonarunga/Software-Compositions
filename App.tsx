@@ -114,10 +114,10 @@ const App: React.FC = () => {
   }, [allTags, tagSearchTerm]);
 
   const getTagButtonClass = (isActive: boolean) => 
-    `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform ${
+    `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform hover:scale-105 ${
       isActive
-        ? 'bg-cyan-500 text-white border-cyan-500 shadow-md scale-105'
-        : 'bg-gray-700/80 text-gray-300 border-gray-600 hover:bg-gray-600/80 hover:border-gray-500 hover:scale-110'
+        ? 'bg-cyan-500/30 text-cyan-300 border-cyan-500/50'
+        : 'bg-gray-700/80 text-gray-300 border-gray-600 hover:bg-gray-600/80 hover:border-gray-500'
     }`;
 
   return (
@@ -288,7 +288,7 @@ const App: React.FC = () => {
               aria-controls="tag-filter-panel"
             >
               <span>
-                Filter by Tag {selectedTags.length > 0 && `(${selectedTags.length})`}
+                Filter by Tag {selectedTags.length > 0 && `(${selectedTags.length} selected)`}
               </span>
               <svg 
                 className={`w-5 h-5 transition-transform duration-300 ${isTagFilterVisible ? 'transform rotate-180' : ''}`}
@@ -299,15 +299,45 @@ const App: React.FC = () => {
               </svg>
             </button>
 
+            {selectedTags.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2 items-center p-3 bg-gray-900/50 rounded-lg border border-gray-700/30">
+                {selectedTags.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => handleTagClick(tag)}
+                    className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-cyan-500 text-white border border-cyan-500 shadow-sm hover:bg-cyan-600 transition-all"
+                    aria-label={`Remove tag: ${tag}`}
+                  >
+                    {tag}
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                ))}
+                <button
+                  onClick={handleClearTags}
+                  className="ml-auto px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 border border-red-500/50 text-red-400 hover:bg-red-500/20"
+                  aria-label="Clear all selected tags"
+                >
+                  Clear All
+                </button>
+              </div>
+            )}
+            
             {isTagFilterVisible && (
               <div id="tag-filter-panel" className="pt-4">
-                <div className="mb-4">
+                <div className="relative mb-4">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
+                    <svg className="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
                   <input
                     type="text"
                     value={tagSearchTerm}
                     onChange={(e) => setTagSearchTerm(e.target.value)}
                     placeholder="Search tags..."
-                    className="w-full bg-gray-900/50 border border-gray-600 rounded-md px-3 py-2 text-sm text-gray-200 placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-600 rounded-md pl-9 pr-3 py-2 text-sm text-gray-200 placeholder-gray-400 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
                     aria-label="Search for a tag"
                   />
                 </div>
@@ -322,15 +352,6 @@ const App: React.FC = () => {
                       {tag}
                     </button>
                   ))}
-                  {selectedTags.length > 0 && (
-                    <button
-                      onClick={handleClearTags}
-                      className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 border border-red-500/50 text-red-400 hover:bg-red-500/20"
-                      aria-label="Clear selected tags"
-                    >
-                      Clear
-                    </button>
-                  )}
                 </div>
               </div>
             )}
