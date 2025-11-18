@@ -113,6 +113,17 @@ const App: React.FC = () => {
     );
   }, [allTags, tagSearchTerm]);
 
+  const groupedProjects = useMemo(() => {
+    return filteredAndSortedProjects.reduce((acc, project) => {
+        const category = project.category;
+        if (!acc[category]) {
+            acc[category] = [];
+        }
+        acc[category].push(project);
+        return acc;
+    }, {} as Record<string, Project[]>);
+  }, [filteredAndSortedProjects]);
+
   const getTagButtonClass = (isActive: boolean) => 
     `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform hover:scale-105 ${
       isActive
@@ -358,13 +369,34 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredAndSortedProjects.map((project) => (
-            <LinkCard 
-              key={project.id} 
-              project={project}
-            />
-          ))}
+        <div className="w-full max-w-7xl space-y-16">
+          {filteredAndSortedProjects.length > 0 ? (
+            Object.keys(groupedProjects).sort().map(category => (
+              <section key={category}>
+                <div className="relative mb-8">
+                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div className="w-full border-t border-gray-700/50" />
+                  </div>
+                  <div className="relative flex justify-center">
+                    <h2 className="bg-gray-900 px-6 text-2xl sm:text-3xl font-bold text-cyan-400">{category}</h2>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {groupedProjects[category].map(project => (
+                    <LinkCard key={project.id} project={project} />
+                  ))}
+                </div>
+              </section>
+            ))
+          ) : (
+            <div className="text-center py-16 px-6 bg-gray-800/30 rounded-lg">
+              <svg className="mx-auto h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              </svg>
+              <h3 className="mt-2 text-xl font-semibold text-gray-300">No Projects Found</h3>
+              <p className="mt-1 text-sm text-gray-500">Try adjusting your search or filter criteria.</p>
+            </div>
+          )}
         </div>
 
         <footer className="mt-12 text-center text-gray-500 text-sm">
