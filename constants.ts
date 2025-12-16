@@ -21,6 +21,26 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 33,
+    title: 'Lugha Learner OS',
+    description: 'Kenyan language learning operating system for linguistic data collection.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://lugha-learner-os.vercel.app/',
+    tags: ['Language', 'Kenya', 'Data Collection', 'OS', 'Education'],
+    category: 'Civic & EdTech',
+    createdAt: '2024-09-01',
+  },
+  {
+    id: 32,
+    title: 'OHIP (Oral Health Intelligence Platform)',
+    description: 'A comprehensive platform utilizing advanced intelligence for oral health monitoring, diagnostics, and personalized care insights.',
+    imageUrl: getImageForIndex(3),
+    url: 'https://ohip-sigma.vercel.app/',
+    tags: ['Health', 'AI', 'Oral Health', 'Platform', 'Diagnostics'],
+    category: 'AI/ML',
+    createdAt: '2024-08-15',
+  },
+  {
     id: 31,
     title: 'Oral Biohacker AI',
     description: 'Hack your oral and systemic health with AI-driven insights, biometrics, and personalized habit design.',
