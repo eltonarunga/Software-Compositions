@@ -25,24 +25,26 @@ const LinkCard: React.FC<LinkCardProps> = ({ project }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col h-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/30 hover:border-cyan-500/50 overflow-hidden"
+      className="group relative flex flex-col h-full bg-white border-2 border-gray-100 rounded-xl shadow-sm transform transition-all duration-300 ease-in-out hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 hover:border-black overflow-hidden"
     >
       {isNew && (
-        <span className="absolute top-3 right-3 z-10 bg-cyan-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg animate-pulse">
+        <span className="absolute top-4 right-4 z-10 bg-black text-white text-[10px] font-black px-3 py-1 rounded-full shadow-md tracking-tighter">
           NEW
         </span>
       )}
-      <img
-        src={imageUrl}
-        alt={title}
-        className="w-full h-48 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-      />
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-lg font-bold text-gray-100 group-hover:text-cyan-400 transition-colors duration-300">{title}</h3>
-        <p className="text-sm text-gray-400 mt-2 flex-grow">{description}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+      <div className="relative aspect-[16/10] overflow-hidden bg-gray-50 border-b border-gray-100">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 ease-in-out group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-100"
+        />
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-black text-black leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all duration-300">{title}</h3>
+        <p className="text-sm text-gray-600 mt-3 flex-grow leading-relaxed font-medium">{description}</p>
+        <div className="mt-6 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span key={tag} className="text-xs font-medium text-gray-300 bg-gray-700/80 px-2 py-1 rounded-full">
+            <span key={tag} className="text-[10px] font-bold text-black bg-gray-100 px-3 py-1 rounded-full uppercase tracking-tight border border-gray-200">
               {tag}
             </span>
           ))}

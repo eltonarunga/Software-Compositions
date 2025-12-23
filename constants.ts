@@ -3,14 +3,14 @@ import { Project } from './types';
 const svgToDataUri = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
 const svgDesigns = [
-  // Design 1: Cosmic Waves
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00E0FF"/><stop offset="100%" stop-color="#7E57C2"/></linearGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><path d="M0 200 C 100 100, 300 300, 400 200" stroke="url(#g1)" stroke-width="3" fill="none" opacity="0.6"/><path d="M0 250 C 150 180, 250 320, 400 250" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.4"/></svg>`,
-  // Design 2: Geo Prism
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7E57C2"/><stop offset="100%" stop-color="#B0BEC5"/></linearGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><g transform="rotate(45 200 200)" opacity="0.5"><rect x="100" y="100" width="200" height="200" fill="none" stroke="url(#g2)" stroke-width="4" rx="10"/></g><g transform="rotate(-30 200 200)" opacity="0.3"><rect x="125" y="125" width="150" height="150" fill="none" stroke="url(#g2)" stroke-width="2" rx="5"/></g></svg>`,
-  // Design 3: Nebula Cloud
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><filter id="f1"><feGaussianBlur in="SourceGraphic" stdDeviation="50" /></filter><radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E0FF" stop-opacity="0.8"/><stop offset="100%" stop-color="#0A0F1F" stop-opacity="0"/></radialGradient></defs><rect width="400" height="400" fill="#0A0F1F"/><circle cx="200" cy="200" r="200" fill="url(#g3)" filter="url(#f1)"/></svg>`,
-  // Design 4: Circuit Board
-  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p1" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 h20 v20 h-20 z M20 0 v10 h20 v-10 z" stroke="#B0BEC5" stroke-width="1" fill="none" opacity="0.3"/></pattern></defs><rect width="400" height="400" fill="#0A0F1F"/><rect width="400" height="400" fill="url(#p1)"/></svg>`,
+  // Design 1: Monochrome Waves
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#000000"/><stop offset="100%" stop-color="#9ca3af"/></linearGradient></defs><rect width="400" height="400" fill="#f9fafb"/><path d="M0 200 C 100 100, 300 300, 400 200" stroke="url(#g1)" stroke-width="3" fill="none" opacity="0.6"/><path d="M0 250 C 150 180, 250 320, 400 250" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.4"/></svg>`,
+  // Design 2: Geo Grid
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#000000"/><stop offset="100%" stop-color="#d1d5db"/></linearGradient></defs><rect width="400" height="400" fill="#f9fafb"/><g transform="rotate(45 200 200)" opacity="0.5"><rect x="100" y="100" width="200" height="200" fill="none" stroke="url(#g2)" stroke-width="4" rx="2"/></g><g transform="rotate(-30 200 200)" opacity="0.3"><rect x="125" y="125" width="150" height="150" fill="none" stroke="url(#g2)" stroke-width="2" rx="1"/></g></svg>`,
+  // Design 3: Minimal Nebula
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><filter id="f1"><feGaussianBlur in="SourceGraphic" stdDeviation="50" /></filter><radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#000000" stop-opacity="0.3"/><stop offset="100%" stop-color="#f9fafb" stop-opacity="0"/></radialGradient></defs><rect width="400" height="400" fill="#f9fafb"/><circle cx="200" cy="200" r="200" fill="url(#g3)" filter="url(#f1)"/></svg>`,
+  // Design 4: Architecture
+  `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 10 h20 M10 0 v20" stroke="#000000" stroke-width="0.5" fill="none" opacity="0.1"/></pattern></defs><rect width="400" height="400" fill="#f9fafb"/><rect width="400" height="400" fill="url(#p1)"/><path d="M50 50 L350 350 M350 50 L50 350" stroke="#000000" stroke-width="1" opacity="0.05"/></svg>`,
 ];
 
 
@@ -20,6 +20,16 @@ const getImageForIndex = (index: number) => {
 
 
 export const PROJECTS: Project[] = [
+  {
+    id: 34,
+    title: 'MedAssure KE',
+    description: 'An AI-driven compliance intelligence platform for Kenyan medical practitioners and facilities, automating regulatory tracking with KMPDC, PPB, and NEMA.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://med-assure-ke.vercel.app/',
+    tags: ['Health', 'AI', 'Compliance', 'Kenya', 'SaaS'],
+    category: 'SaaS & Platforms',
+    createdAt: '2024-10-26',
+  },
   {
     id: 33,
     title: 'Lugha Learner OS',
