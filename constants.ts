@@ -21,6 +21,26 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 36,
+    title: 'Portfolio Net Worth Calculator',
+    description: 'A comprehensive AI-crafted tool to track and visualize your total net worth across different asset classes with interactive charts.',
+    imageUrl: getImageForIndex(3),
+    url: 'https://claude.ai/public/artifacts/7792809c-beef-495a-903e-f7ecee0983d9',
+    tags: ['Fintech', 'Portfolio', 'Net Worth', 'Calculator', 'Visualization'],
+    category: 'Fintech & Crypto',
+    createdAt: '2024-11-21',
+  },
+  {
+    id: 35,
+    title: 'Portfolio Rebalancing Calculator',
+    description: 'Enter your current portfolio values, customize your target allocation, and add new asset classes to get personalized rebalancing recommendations.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://cgkgnjtw.manus.space/',
+    tags: ['Fintech', 'Portfolio', 'Investment', 'Calculator', 'Wealth Management'],
+    category: 'Fintech & Crypto',
+    createdAt: '2024-11-20',
+  },
+  {
     id: 34,
     title: 'MedAssure KE',
     description: 'An AI-driven compliance intelligence platform for Kenyan medical practitioners and facilities, automating regulatory tracking with KMPDC, PPB, and NEMA.',
@@ -145,7 +165,7 @@ export const PROJECTS: Project[] = [
     title: 'Stylo - AI wardrobe transformer',
     description: 'An AI-powered application that transforms your wardrobe by suggesting new outfits, cataloging your clothes, and helping you discover your personal style.',
     imageUrl: getImageForIndex(1),
-    url: 'https://ai.studio/apps/drive/1JEh7KNQUlgDMOGc4heJTBoqQC7kcX6bV',
+    url: 'https://stylo-sooty.vercel.app/',
     tags: ['AI', 'Fashion', 'Style', 'Wardrobe', 'Assistant'],
     category: 'AI/ML',
     createdAt: '2024-07-05',
