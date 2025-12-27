@@ -3,8 +3,17 @@ import { PROJECTS } from './constants';
 import LinkCard from './components/LinkCard';
 import { Project } from './types';
 
+/** 
+ * HOW TO ADD YOUR PROFILE PICTURE:
+ * 1. Replace the empty string below with your image URL.
+ * 2. Example: 'https://github.com/yourusername.png' or 'https://yourwebsite.com/profile.jpg'
+ * 3. If left empty, the app will use the "EA" text avatar fallback.
+ */
+const PROFILE_PICTURE_URL = 'https://x.com/E_Arunga/photo';
+
 const avatarSvg = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#000000" /><stop offset="100%" stop-color="#4b5563" /></linearGradient></defs><rect width="128" height="128" fill="#f3f4f6" /><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" font-weight="bold" fill="url(#avatarGrad)" dy=".1em">EA</text></svg>`;
-const avatarDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(avatarSvg)}`;
+const avatarFallback = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(avatarSvg)}`;
+const activeProfileImage = PROFILE_PICTURE_URL || avatarFallback;
 
 type SortBy = 'id' | 'title';
 type SortOrder = 'asc' | 'desc';
@@ -140,9 +149,9 @@ const App: React.FC = () => {
       <main className="relative z-10 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
         <header className="text-center mb-10">
           <img
-            src={avatarDataUri}
+            src={activeProfileImage}
             alt="Profile Avatar"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-4 border-2 border-black shadow-sm"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-4 border-2 border-black shadow-sm object-cover"
           />
           <h1 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">Software Compositions by EArunga</h1>
           <p className="text-md sm:text-lg text-gray-600 mt-2 font-medium">Curator of digital aesthetics & functional art.</p>
@@ -151,9 +160,9 @@ const App: React.FC = () => {
         <section className="w-full max-w-4xl mb-10 bg-white border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
             <img 
-              src={avatarDataUri} 
+              src={activeProfileImage} 
               alt="EArunga's profile picture" 
-              className="w-32 h-32 rounded-full border-2 border-black flex-shrink-0"
+              className="w-32 h-32 rounded-full border-2 border-black flex-shrink-0 object-cover shadow-md"
             />
             <div>
               <h2 className="text-2xl font-bold text-black mb-3">About Me</h2>
