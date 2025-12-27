@@ -9,7 +9,7 @@ import { Project } from './types';
  * 2. Example: 'https://github.com/yourusername.png' or 'https://yourwebsite.com/profile.jpg'
  * 3. If left empty, the app will use the "EA" text avatar fallback.
  */
-const PROFILE_PICTURE_URL = 'https://x.com/E_Arunga/photo';
+const PROFILE_PICTURE_URL = 'https://ugc.production.linktr.ee/89b33d54-41fc-4708-900c-83ceb1abd15e_1000393391.png?io=true&size=avatar-v3_0';
 
 const avatarSvg = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#000000" /><stop offset="100%" stop-color="#4b5563" /></linearGradient></defs><rect width="128" height="128" fill="#f3f4f6" /><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" font-weight="bold" fill="url(#avatarGrad)" dy=".1em">EA</text></svg>`;
 const avatarFallback = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(avatarSvg)}`;
