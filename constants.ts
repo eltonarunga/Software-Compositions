@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
     title: 'Cinema AI Agent Bot',
     description: 'An AI-powered agent to help you discover books, cinema, and movies.',
     imageUrl: getImageForIndex(1),
-    url: 'https://ai.studio/apps/drive/1ciylQudDFh8ETGa7hGlB2fnNDzGkEiZZ',
+    url: 'https://cinemaagent.netlify.app/',
     tags: ['AI', 'Agent', 'Cinema', 'Movies', 'Bot'],
     category: 'AI/ML',
     createdAt: '2024-07-23',
