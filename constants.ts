@@ -225,7 +225,7 @@ export const PROJECTS: Project[] = [
     title: 'Kenya MedReg Compliance Assistant',
     description: 'A centralized platform to manage and track medical compliance documentation and reporting.',
     imageUrl: getImageForIndex(3),
-    url: 'https://kenya-medreg-compliance-assistant-893722584695.us-west1.run.app',
+    url: 'https://kenya-med-reg-compliance.vercel.app/',
     tags: ['Health', 'Compliance', 'SaaS'],
     category: 'SaaS & Platforms',
     createdAt: '2024-03-08',
