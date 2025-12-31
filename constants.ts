@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
     title: 'Portfolio Rebalancing Calculator',
     description: 'Enter your current portfolio values, customize your target allocation, and add new asset classes to get personalized rebalancing recommendations.',
     imageUrl: getImageForIndex(0),
-    url: 'https://cgkgnjtw.manus.space/',
+    url: 'https://rebalancecalc-qiyampwr.manus.space/',
     tags: ['Fintech', 'Portfolio', 'Investment', 'Calculator', 'Wealth Management'],
     category: 'Fintech & Crypto',
     createdAt: '2024-11-20',
