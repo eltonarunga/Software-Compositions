@@ -285,7 +285,7 @@ export const PROJECTS: Project[] = [
     title: 'Vibe codes',
     description: 'A collection of creative and aesthetically pleasing coding projects.',
     imageUrl: getImageForIndex(0),
-    url: 'https://irdoujhu.manus.space/',
+    url: 'https://vibecodes-wbkwyjej.manus.space',
     tags: ['Creative Coding', 'Portfolio', 'Art'],
     category: 'Creative & Media',
     createdAt: '2023-11-15',
@@ -339,15 +339,5 @@ export const PROJECTS: Project[] = [
     tags: ['AI', 'Music', 'Audio', 'Generative'],
     category: 'Creative & Media',
     createdAt: '2023-08-01',
-  },
-  {
-    id: 1,
-    title: 'AI Video Prompt Enhancer',
-    description: 'Enhance your video prompts with the power of generative AI.',
-    imageUrl: getImageForIndex(0),
-    url: 'https://gemini.google.com/share/6a3c09ed6a3f?hl=en-GB',
-    tags: ['AI', 'Gemini', 'Video'],
-    category: 'Creative & Media',
-    createdAt: '2023-07-28',
   }
 ];
