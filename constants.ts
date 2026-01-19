@@ -21,6 +21,26 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 37,
+    title: 'Oral Biohacker AI V2',
+    description: 'The advanced evolution of oral biohacking. Features deeper biometric analysis, personalized habit coaching, and intelligent diagnostic insights.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://oral-biohacker-ai-v2.vercel.app/',
+    tags: ['AI', 'Health', 'Biohacking', 'Gemini', 'Wellness', 'V2.0'],
+    category: 'AI/ML',
+    createdAt: '2025-02-15',
+  },
+  {
+    id: 31,
+    title: 'Oral Biohacker AI',
+    description: 'Hack your oral and systemic health with AI-driven insights, biometrics, and personalized habit design.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://oral-bio-ai.vercel.app/',
+    tags: ['AI', 'Health', 'Biohacking', 'Biometrics', 'Wellness'],
+    category: 'AI/ML',
+    createdAt: '2024-08-10',
+  },
+  {
     id: 36,
     title: 'Portfolio Net Worth Calculator',
     description: 'A comprehensive AI-crafted tool to track and visualize your total net worth across different asset classes with interactive charts.',
@@ -69,16 +89,6 @@ export const PROJECTS: Project[] = [
     tags: ['Health', 'AI', 'Oral Health', 'Platform', 'Diagnostics'],
     category: 'AI/ML',
     createdAt: '2024-08-15',
-  },
-  {
-    id: 31,
-    title: 'Oral Biohacker AI',
-    description: 'Hack your oral and systemic health with AI-driven insights, biometrics, and personalized habit design.',
-    imageUrl: getImageForIndex(0),
-    url: 'https://oral-biohacker-ai-724142811315.us-west1.run.app/',
-    tags: ['AI', 'Health', 'Biohacking', 'Biometrics', 'Wellness'],
-    category: 'AI/ML',
-    createdAt: '2024-07-26',
   },
   {
     id: 101,
