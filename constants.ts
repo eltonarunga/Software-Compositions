@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
     title: 'Safari Mate - AI Travel Agent',
     description: 'An AI-powered travel assistant that helps travelers prepare for trips by providing a personalized checklist of requirements to avoid any hiccups.',
     imageUrl: getImageForIndex(1),
-    url: 'https://safarimate.netlify.app/',
+    url: 'https://safari-mate-ecru.vercel.app/',
     tags: ['AI', 'Travel', 'Assistant', 'Planning'],
     category: 'AI/ML',
     createdAt: '2024-06-18',
