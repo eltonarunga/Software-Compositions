@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 38,
+    title: 'Kazira.io Clinical Intelligence MVP',
+    description: 'An advanced AI-powered platform for clinical data analysis and intelligence, designed to streamline healthcare decision-making through synthesized diagnostic insights.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://kazira-io-clinical-intelligence-mvp.vercel.app/',
+    tags: ['AI', 'Healthcare', 'Clinical Intelligence', 'SaaS', 'Data Analytics'],
+    category: 'AI/ML',
+    createdAt: '2025-02-19',
+  },
+  {
     id: 37,
     title: 'Oral Biohacker AI V2',
     description: 'The advanced evolution of oral biohacking. Features deeper biometric analysis, personalized habit coaching, and intelligent diagnostic insights.',
@@ -115,7 +125,7 @@ export const PROJECTS: Project[] = [
     title: 'Kazira.io',
     description: 'A modern SaaS platform by Kazira.io providing AI-powered automation (Kazira Automate) and future-skills learning (Kazira Learn).',
     imageUrl: getImageForIndex(3),
-    url: 'https://kazira-io-669567718651.us-west1.run.app/',
+    url: 'https://kazira-io.vercel.app/',
     tags: ['SaaS', 'AI', 'Automation', 'EdTech'],
     category: 'SaaS & Platforms',
     createdAt: '2024-06-28',
