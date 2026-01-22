@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 39,
+    title: 'Popnants 500 App MVPs',
+    description: 'A curated collection of vibe-coded MVP applications showcasing innovative design patterns, interactive experiences, and modern development practices across FinTech, EdTech, AgriTech, AI Startups, and Web3.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://vibelanding-z9xjgdag.manus.space/',
+    tags: ['MVP', 'Showcase', 'Vibe-coded', 'Portfolio', 'Multi-Industry'],
+    category: 'SaaS & Platforms',
+    createdAt: '2025-02-21',
+  },
+  {
     id: 38,
     title: 'Kazira.io Clinical Intelligence MVP',
     description: 'An advanced AI-powered platform for clinical data analysis and intelligence, designed to streamline healthcare decision-making through synthesized diagnostic insights.',
