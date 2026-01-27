@@ -215,7 +215,7 @@ export const PROJECTS: Project[] = [
     title: 'Crave Cam',
     description: 'An AI-powered Restaurant Reels app that creates stunning short videos for your culinary creations, perfect for social media marketing.',
     imageUrl: getImageForIndex(2),
-    url: 'https://cravecam.netlify.app/',
+    url: 'https://crave-cam-v2.vercel.app/',
     tags: ['AI', 'Video', 'Food', 'Marketing'],
     category: 'Creative & Media',
     createdAt: '2024-06-25',
