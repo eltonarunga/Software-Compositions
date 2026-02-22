@@ -21,6 +21,26 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 41,
+    title: 'Medicals for Dentists V2 (DentAnalysis Pro)',
+    description: 'Advanced AI-powered medical analysis and diagnostics tool for dental professionals.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://g.co/gemini/share/7ab77dc1156a',
+    tags: ['AI', 'Health', 'Dentistry', 'Medical', 'V2.0'],
+    category: 'AI/ML',
+    createdAt: '2025-02-22',
+  },
+  {
+    id: 40,
+    title: 'Medicals for Dentists V1',
+    description: 'An AI-powered medical analysis tool for dentists.',
+    imageUrl: getImageForIndex(3),
+    url: 'https://g.co/gemini/share/5b3a5214cb12',
+    tags: ['AI', 'Health', 'Dentistry', 'Medical'],
+    category: 'AI/ML',
+    createdAt: '2025-02-22',
+  },
+  {
     id: 39,
     title: 'Popnants 500 App MVPs',
     description: 'A curated collection of vibe-coded MVP applications showcasing innovative design patterns, interactive experiences, and modern development practices across FinTech, EdTech, AgriTech, AI Startups, and Web3.',
