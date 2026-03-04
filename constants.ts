@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 42,
+    title: 'Dental Directory KE',
+    description: 'Directory for registered dentists and dental clinics in Kenya.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://dental-directory-ke.vercel.app/',
+    tags: ['Health', 'Dentistry', 'Directory', 'Kenya'],
+    category: 'SaaS & Platforms',
+    createdAt: '2026-03-04',
+  },
+  {
     id: 41,
     title: 'Medicals for Dentists V2 (DentAnalysis Pro)',
     description: 'Advanced AI-powered medical analysis and diagnostics tool for dental professionals.',
