@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 43,
+    title: 'LandChain',
+    description: 'Secure Land Ownership on the Blockchain.',
+    imageUrl: getImageForIndex(0),
+    url: 'https://land-chain-eight.vercel.app/',
+    tags: ['Blockchain', 'Real Estate', 'Web3', 'Land Registry'],
+    category: 'Web3 & Blockchain',
+    createdAt: '2026-03-05',
+  },
+  {
     id: 42,
     title: 'Dental Directory KE',
     description: 'Directory for registered dentists and dental clinics in Kenya.',

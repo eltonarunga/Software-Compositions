@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { PROJECTS } from './constants';
 import LinkCard from './components/LinkCard';
+import TermsModal from './components/TermsModal';
+import PrivacyModal from './components/PrivacyModal';
 import { Project } from './types';
 
 /** 
@@ -28,6 +30,8 @@ const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   // Debounce search input to improve performance
   useEffect(() => {
@@ -435,9 +439,17 @@ const App: React.FC = () => {
             Showing {filteredAndSortedProjects.length} of {PROJECTS.length} compositions
           </p>
           <p>&copy; {new Date().getFullYear()} EArunga. All rights reserved.</p>
-          <p className="mt-1 font-medium italic">Built with React & Tailwind CSS</p>
+          <p className="mt-1 font-medium italic mb-4">Built with React & Tailwind CSS</p>
+          <div className="flex justify-center space-x-4 text-xs">
+            <button onClick={() => setIsTermsOpen(true)} className="hover:text-black transition-colors underline underline-offset-2">Terms of Service</button>
+            <span>|</span>
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-black transition-colors underline underline-offset-2">Privacy Policy</button>
+          </div>
         </footer>
       </main>
+
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </div>
   );
 };
