@@ -21,6 +21,26 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 38,
+    title: 'Kazira.io Clinical Intelligence MVP',
+    description: 'An advanced AI-powered platform for clinical data analysis and intelligence, designed to streamline healthcare decision-making through synthesized diagnostic insights.',
+    imageUrl: getImageForIndex(1),
+    url: 'https://kazira-io-clinical-intelligence-mvp.vercel.app/',
+    tags: ['AI', 'Healthcare', 'Clinical Intelligence', 'SaaS', 'Data Analytics'],
+    category: 'AI/ML',
+    createdAt: '2025-02-19',
+  },
+  {
+    id: 44,
+    title: 'Lugha Learner (Replit version)',
+    description: 'An intelligent language learning assistant for Kenyan languages, powered by AI.',
+    imageUrl: getImageForIndex(2),
+    url: 'https://lugha-learner--eltonarunga.replit.app',
+    tags: ['AI', 'Language', 'Kenya', 'Education'],
+    category: 'Civic & EdTech',
+    createdAt: '2026-03-22',
+  },
+  {
     id: 43,
     title: 'LandChain',
     description: 'Secure Land Ownership on the Blockchain.',
@@ -69,16 +89,6 @@ export const PROJECTS: Project[] = [
     tags: ['MVP', 'Showcase', 'Vibe-coded', 'Portfolio', 'Multi-Industry'],
     category: 'SaaS & Platforms',
     createdAt: '2025-02-21',
-  },
-  {
-    id: 38,
-    title: 'Kazira.io Clinical Intelligence MVP',
-    description: 'An advanced AI-powered platform for clinical data analysis and intelligence, designed to streamline healthcare decision-making through synthesized diagnostic insights.',
-    imageUrl: getImageForIndex(1),
-    url: 'https://kazira-io-clinical-intelligence-mvp.vercel.app/',
-    tags: ['AI', 'Healthcare', 'Clinical Intelligence', 'SaaS', 'Data Analytics'],
-    category: 'AI/ML',
-    createdAt: '2025-02-19',
   },
   {
     id: 37,
