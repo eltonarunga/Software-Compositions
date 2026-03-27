@@ -30,6 +30,8 @@ const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedAiTools, setSelectedAiTools] = useState<string[]>([]);
+  const [isAiToolFilterVisible, setIsAiToolFilterVisible] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
@@ -56,6 +58,16 @@ const App: React.FC = () => {
     return ['All', ...Array.from(categories).sort()];
   }, []);
 
+  const allAiTools = useMemo(() => {
+    const tools = new Set<string>();
+    PROJECTS.forEach(project => {
+      if (project.aiTools) {
+        project.aiTools.forEach(tool => tools.add(tool));
+      }
+    });
+    return Array.from(tools).sort();
+  }, []);
+
   const handleTagClick = (tag: string) => {
     setSelectedTags(prev =>
       prev.includes(tag)
@@ -67,6 +79,18 @@ const App: React.FC = () => {
   const handleClearTags = () => {
     setSelectedTags([]);
     setTagSearchTerm('');
+  };
+
+  const handleAiToolClick = (tool: string) => {
+    setSelectedAiTools(prev =>
+      prev.includes(tool)
+        ? prev.filter(t => t !== tool)
+        : [...prev, tool]
+    );
+  };
+  
+  const handleClearAiTools = () => {
+    setSelectedAiTools([]);
   };
 
   // Fuzzy search function to allow for more forgiving searches
@@ -99,11 +123,15 @@ const App: React.FC = () => {
       ? filteredByCategory
       : filteredByCategory.filter(project => project.tags.some(tag => selectedTags.includes(tag)));
 
+    const filteredByAiTools = selectedAiTools.length === 0
+      ? filteredByTags
+      : filteredByTags.filter(project => project.aiTools && project.aiTools.some(tool => selectedAiTools.includes(tool)));
+
     if (sortBy === null) {
-      return filteredByTags;
+      return filteredByAiTools;
     }
 
-    const sorted = [...filteredByTags].sort((a, b) => {
+    const sorted = [...filteredByAiTools].sort((a, b) => {
       if (sortBy === 'title') {
         return a.title.localeCompare(b.title);
       }
@@ -115,7 +143,7 @@ const App: React.FC = () => {
     }
 
     return sorted;
-  }, [sortBy, sortOrder, selectedTags, debouncedSearchTerm, selectedCategory]);
+  }, [sortBy, sortOrder, selectedTags, selectedAiTools, debouncedSearchTerm, selectedCategory]);
   
   const visibleTags = useMemo(() => {
     if (!tagSearchTerm) {
@@ -374,6 +402,68 @@ const App: React.FC = () => {
                       aria-pressed={selectedTags.includes(tag)}
                     >
                       {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <button
+              onClick={() => setIsAiToolFilterVisible(!isAiToolFilterVisible)}
+              className="w-full flex justify-between items-center text-left font-bold text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm uppercase tracking-wider"
+              aria-expanded={isAiToolFilterVisible}
+              aria-controls="ai-tool-filter-panel"
+            >
+              <span>
+                AI Tools {selectedAiTools.length > 0 && `— ${selectedAiTools.length} selected`}
+              </span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-300 ${isAiToolFilterVisible ? 'transform rotate-180' : ''}`}
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {selectedAiTools.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2 items-center p-3 bg-gray-50 rounded-lg border border-gray-200">
+                {selectedAiTools.map(tool => (
+                  <button
+                    key={tool}
+                    onClick={() => handleAiToolClick(tool)}
+                    className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-black text-white border border-black hover:bg-gray-800 transition-all"
+                    aria-label={`Remove tool: ${tool}`}
+                  >
+                    {tool}
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                ))}
+                <button
+                  onClick={handleClearAiTools}
+                  className="ml-auto px-3 py-1 text-xs font-bold rounded-full transition-all duration-200 border border-black text-black hover:bg-black hover:text-white"
+                  aria-label="Clear all selected AI tools"
+                >
+                  Clear All
+                </button>
+              </div>
+            )}
+            
+            {isAiToolFilterVisible && (
+              <div id="ai-tool-filter-panel" className="pt-4">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                  {allAiTools.map(tool => (
+                    <button 
+                      key={tool}
+                      onClick={() => handleAiToolClick(tool)}
+                      className={getTagButtonClass(selectedAiTools.includes(tool))}
+                      aria-pressed={selectedAiTools.includes(tool)}
+                    >
+                      {tool}
                     </button>
                   ))}
                 </div>

@@ -8,4 +8,5 @@ export interface Project {
   tags: string[];
   category: string;
   createdAt: string;
+  aiTools?: string[];
 }
