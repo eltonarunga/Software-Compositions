@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 105,
+    title: 'DentSide Remote',
+    description: 'An all-in-one remote career hub for dentists, offering teledentistry, insurance review, freelance gigs, and corporate roles in a single platform.',
+    imageUrl: getImageForIndex(5),
+    url: 'https://dent-side-remote.vercel.app/',
+    tags: ['Health', 'Dentistry', 'Career', 'Remote', 'Teledentistry', 'Platform'],
+    category: 'SaaS & Platforms',
+    createdAt: '2026-04-16',
+  },
+  {
     id: 38,
     title: 'Kazira.io Clinical Intelligence MVP',
     description: 'An advanced AI-powered platform for clinical data analysis and intelligence, designed to streamline healthcare decision-making through synthesized diagnostic insights.',
