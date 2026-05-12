@@ -21,6 +21,16 @@ const getImageForIndex = (index: number) => {
 
 export const PROJECTS: Project[] = [
   {
+    id: 106,
+    title: 'DentMatchKE',
+    description: "The First Reverse Recruitment Platform for Kenya's Dental Talent.",
+    imageUrl: getImageForIndex(6),
+    url: 'https://dent-match-ke.vercel.app/',
+    tags: ['Health', 'Dentistry', 'Career', 'Recruitment', 'Platform', 'Kenya'],
+    category: 'SaaS & Platforms',
+    createdAt: '2026-05-12',
+  },
+  {
     id: 105,
     title: 'DentSide Remote',
     description: 'An all-in-one remote career hub for dentists, offering teledentistry, insurance review, freelance gigs, and corporate roles in a single platform.',
@@ -131,7 +141,7 @@ export const PROJECTS: Project[] = [
     title: 'Portfolio Net Worth Calculator',
     description: 'A comprehensive AI-crafted tool to track and visualize your total net worth across different asset classes with interactive charts.',
     imageUrl: getImageForIndex(3),
-    url: 'https://claude.ai/public/artifacts/7792809c-beef-495a-903e-f7ecee0983d9',
+    url: 'https://claude.ai/public/artifacts/2939922b-8961-426a-96b5-75b2ff353472',
     aiTools: ['Claude'],
     tags: ['Fintech', 'Portfolio', 'Net Worth', 'Calculator', 'Visualization'],
     category: 'Fintech & Crypto',
