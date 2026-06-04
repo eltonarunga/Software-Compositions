@@ -1,18 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { PROJECTS } from './constants';
+import Header from './components/Header';
+import AboutStatsBento from './components/AboutStatsBento';
+import FilterPanel from './components/FilterPanel';
 import LinkCard from './components/LinkCard';
 import TermsModal from './components/TermsModal';
 import PrivacyModal from './components/PrivacyModal';
 import { Project } from './types';
+import { ShieldCheck, Info } from 'lucide-react';
 
-/** 
- * HOW TO ADD YOUR PROFILE PICTURE:
- * 1. Replace the empty string below with your image URL.
- * 2. Example: 'https://github.com/yourusername.png' or 'https://yourwebsite.com/profile.jpg'
- * 3. If left empty, the app will use the "EA" text avatar fallback.
- */
 const PROFILE_PICTURE_URL = 'https://ugc.production.linktr.ee/89b33d54-41fc-4708-900c-83ceb1abd15e_1000393391.png?io=true&size=avatar-v3_0';
-
 const avatarSvg = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#000000" /><stop offset="100%" stop-color="#4b5563" /></linearGradient></defs><rect width="128" height="128" fill="#f3f4f6" /><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" font-weight="bold" fill="url(#avatarGrad)" dy=".1em">EA</text></svg>`;
 const avatarFallback = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(avatarSvg)}`;
 const activeProfileImage = PROFILE_PICTURE_URL || avatarFallback;
@@ -21,17 +19,13 @@ type SortBy = 'id' | 'title';
 type SortOrder = 'asc' | 'desc';
 
 const App: React.FC = () => {
-  const [sortBy, setSortBy] = useState<SortBy | null>(null);
+  const [sortBy, setSortBy] = useState<SortBy | null>('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [isTagFilterVisible, setIsTagFilterVisible] = useState(false);
-  const [isCategoryFilterVisible, setIsCategoryFilterVisible] = useState(false);
-  const [tagSearchTerm, setTagSearchTerm] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedAiTools, setSelectedAiTools] = useState<string[]>([]);
-  const [isAiToolFilterVisible, setIsAiToolFilterVisible] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
@@ -39,7 +33,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-    }, 300); // 300ms delay
+    }, 300);
 
     return () => {
       clearTimeout(timerId);
@@ -70,22 +64,17 @@ const App: React.FC = () => {
 
   const handleTagClick = (tag: string) => {
     setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
     );
   };
   
   const handleClearTags = () => {
     setSelectedTags([]);
-    setTagSearchTerm('');
   };
 
   const handleAiToolClick = (tool: string) => {
     setSelectedAiTools(prev =>
-      prev.includes(tool)
-        ? prev.filter(t => t !== tool)
-        : [...prev, tool]
+      prev.includes(tool) ? prev.filter(t => t !== tool) : [...prev, tool]
     );
   };
   
@@ -93,451 +82,226 @@ const App: React.FC = () => {
     setSelectedAiTools([]);
   };
 
-  // Fuzzy search function to allow for more forgiving searches
+  // Fuzzy search helper for flexible searching
   const fuzzySearch = (query: string, text: string): boolean => {
     const searchQuery = query.toLowerCase().replace(/\s/g, '');
     if (!searchQuery) return true;
     const textToSearch = text.toLowerCase();
     let searchIndex = 0;
     for (let i = 0; i < textToSearch.length && searchIndex < searchQuery.length; i++) {
-        if (textToSearch[i] === searchQuery[searchIndex]) {
-            searchIndex++;
-        }
+      if (textToSearch[i] === searchQuery[searchIndex]) {
+        searchIndex++;
+      }
     }
     return searchIndex === searchQuery.length;
   };
 
   const filteredAndSortedProjects = useMemo(() => {
-    const searched = debouncedSearchTerm.trim() === ''
+    // 1. Initial filter by search term
+    let result = debouncedSearchTerm.trim() === ''
       ? PROJECTS
       : PROJECTS.filter(project =>
           fuzzySearch(debouncedSearchTerm, project.title) ||
-          fuzzySearch(debouncedSearchTerm, project.description)
+          fuzzySearch(debouncedSearchTerm, project.description) ||
+          project.tags.some(tag => fuzzySearch(debouncedSearchTerm, tag))
         );
         
-    const filteredByCategory = selectedCategory === 'All'
-      ? searched
-      : searched.filter(project => project.category === selectedCategory);
+    // 2. Filter by Category
+    if (selectedCategory !== 'All') {
+      result = result.filter(project => project.category === selectedCategory);
+    }
         
-    const filteredByTags = selectedTags.length === 0
-      ? filteredByCategory
-      : filteredByCategory.filter(project => project.tags.some(tag => selectedTags.includes(tag)));
-
-    const filteredByAiTools = selectedAiTools.length === 0
-      ? filteredByTags
-      : filteredByTags.filter(project => project.aiTools && project.aiTools.some(tool => selectedAiTools.includes(tool)));
-
-    if (sortBy === null) {
-      return filteredByAiTools;
+    // 3. Filter by Tags
+    if (selectedTags.length > 0) {
+      result = result.filter(project => 
+        project.tags.some(tag => selectedTags.includes(tag))
+      );
     }
 
-    const sorted = [...filteredByAiTools].sort((a, b) => {
-      if (sortBy === 'title') {
-        return a.title.localeCompare(b.title);
+    // 4. Filter by AI Tools
+    if (selectedAiTools.length > 0) {
+      result = result.filter(project => 
+        project.aiTools && project.aiTools.some(tool => selectedAiTools.includes(tool))
+      );
+    }
+
+    // 5. Apply Sorting
+    if (sortBy !== null) {
+      result = [...result].sort((a, b) => {
+        if (sortBy === 'title') {
+          return a.title.localeCompare(b.title);
+        }
+        // Fallback to sort by date & ID
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        if (dateA !== dateB) return dateA - dateB;
+        return a.id - b.id;
+      });
+
+      if (sortOrder === 'desc') {
+        result.reverse();
       }
-      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    });
-
-    if (sortOrder === 'desc') {
-      return sorted.reverse();
     }
 
-    return sorted;
+    return result;
   }, [sortBy, sortOrder, selectedTags, selectedAiTools, debouncedSearchTerm, selectedCategory]);
-  
-  const visibleTags = useMemo(() => {
-    if (!tagSearchTerm) {
-      return allTags;
-    }
-    return allTags.filter(tag =>
-      tag.toLowerCase().includes(tagSearchTerm.toLowerCase())
-    );
-  }, [allTags, tagSearchTerm]);
+
+  // Group projects by category ONLY if we are viewing 'All' and no other active tag/search filters exist,
+  // otherwise flat grid is much better so results are focused and clearly displayed!
+  const isBrowsingGeneralAll = selectedCategory === 'All' && selectedTags.length === 0 && selectedAiTools.length === 0 && debouncedSearchTerm === '';
 
   const groupedProjects = useMemo(() => {
+    if (!isBrowsingGeneralAll) return null;
     return filteredAndSortedProjects.reduce((acc, project) => {
-        const category = project.category;
-        if (!acc[category]) {
-            acc[category] = [];
-        }
-        acc[category].push(project);
-        return acc;
+      const category = project.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(project);
+      return acc;
     }, {} as Record<string, Project[]>);
-  }, [filteredAndSortedProjects]);
-
-  const getTagButtonClass = (isActive: boolean) => 
-    `px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ease-in-out border transform hover:scale-105 ${
-      isActive
-        ? 'bg-black text-white border-black'
-        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400'
-    }`;
+  }, [filteredAndSortedProjects, isBrowsingGeneralAll]);
 
   return (
-    <div className="min-h-screen text-black selection:bg-black selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-[#fafafa] text-zinc-900 selection:bg-black selection:text-white antialiased transition-colors duration-300">
+      {/* Decorative Grid Wallpaper overlay */}
       <div 
-        className="fixed inset-0 z-0 opacity-10 pointer-events-none" 
-        style={{backgroundImage: 'radial-gradient(#000000 1px, transparent 1px)', backgroundSize: '24px 24px'}}
-      ></div>
-      <main className="relative z-10 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
-        <header className="text-center mb-10">
-          <img
-            src={activeProfileImage}
-            alt="Profile Avatar"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-4 border-2 border-black shadow-sm object-cover"
-          />
-          <h1 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">Software Compositions by EArunga</h1>
-          <p className="text-md sm:text-lg text-gray-600 mt-2 font-medium">Curator of digital aesthetics & functional art.</p>
-        </header>
-        
-        <section className="w-full max-w-4xl mb-10 bg-white border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-            <img 
-              src={activeProfileImage} 
-              alt="EArunga's profile picture" 
-              className="w-32 h-32 rounded-full border-2 border-black flex-shrink-0 object-cover shadow-md"
-            />
-            <div>
-              <h2 className="text-2xl font-bold text-black mb-3">About Me</h2>
-              <p className="text-gray-700 leading-relaxed">
-                I'm a software composer passionate about building intelligent, user-centric applications at the intersection of clean code, intuitive UI/UX, and the transformative power of AI.
-              </p>
-              <p className="text-gray-700 leading-relaxed mt-3">
-                This collection represents my journey through various technologies and creative challenges. Feel free to explore the projects and connect with me.
-              </p>
-            </div>
-          </div>
-        </section>
+        className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" 
+        style={{ backgroundImage: 'radial-gradient(#000000 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      />
+      
+      {/* Main Container */}
+      <main className="relative z-10 container mx-auto px-4 py-12 max-w-7xl flex flex-col items-center">
+        {/* Render Header Component */}
+        <Header activeProfileImage={activeProfileImage} totalCompositions={PROJECTS.length} />
 
-        <div className="w-full max-w-7xl mb-8 p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
-          <div className="w-full mb-6">
-            <label htmlFor="project-search" className="sr-only">Search projects by title or description</label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
-                <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <input
-                type="search"
-                id="project-search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search projects..."
-                className="w-full bg-white border border-gray-300 rounded-lg pl-10 pr-4 py-3 text-sm text-black placeholder-gray-400 focus:ring-1 focus:ring-black focus:border-black transition-colors"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-12">
-            <div className="flex items-center gap-4">
-              <span id="sort-by-label" className="font-bold text-gray-900 text-sm uppercase tracking-wider">Sort by:</span>
-              <div className="flex space-x-1" role="radiogroup" aria-labelledby="sort-by-label">
-                <label>
-                  <input
-                    type="radio"
-                    name="sortBy"
-                    value="id"
-                    checked={sortBy === 'id'}
-                    onChange={() => setSortBy('id')}
-                    className="sr-only"
-                  />
-                  <span className={`cursor-pointer px-4 py-2 text-xs font-bold rounded-md transition-all duration-200 uppercase tracking-tighter ${
-                    sortBy === 'id'
-                      ? 'bg-black text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}>
-                    Date
-                  </span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="sortBy"
-                    value="title"
-                    checked={sortBy === 'title'}
-                    onChange={() => setSortBy('title')}
-                    className="sr-only"
-                  />
-                  <span className={`cursor-pointer px-4 py-2 text-xs font-bold rounded-md transition-all duration-200 uppercase tracking-tighter ${
-                    sortBy === 'title'
-                      ? 'bg-black text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}>
-                    Title
-                  </span>
-                </label>
-              </div>
-            </div>
+        {/* Render Elegant Stats Bento Dashboard */}
+        <AboutStatsBento activeProfileImage={activeProfileImage} projects={PROJECTS} />
 
-            <div className="flex items-center gap-4">
-              <span className="font-bold text-gray-900 text-sm uppercase tracking-wider">Order:</span>
-              <button
-                onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
-                className="flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-md transition-all duration-200 bg-gray-100 text-gray-600 hover:bg-gray-200 uppercase tracking-tighter"
-                aria-live="polite"
-                aria-label={`Current order: ${sortOrder}. Toggle to ${sortOrder === 'asc' ? 'descending' : 'ascending'}`}
-              >
-                <span>{sortOrder === 'asc' ? 'Asc' : 'Desc'}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-4 w-4 transition-transform duration-300 ${sortOrder === 'asc' ? 'rotate-180' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={3}
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5-5-5M12 18V6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          
-          <div className="mt-8 pt-6 border-t border-gray-100">
-             <button
-              onClick={() => setIsCategoryFilterVisible(!isCategoryFilterVisible)}
-              className="w-full flex justify-between items-center text-left font-bold text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm uppercase tracking-wider"
-              aria-expanded={isCategoryFilterVisible}
-              aria-controls="category-filter-panel"
-            >
-              <span id="category-filter-label">
-                Category {selectedCategory !== 'All' && `— ${selectedCategory}`}
-              </span>
-              <svg 
-                className={`w-5 h-5 transition-transform duration-300 ${isCategoryFilterVisible ? 'transform rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            {isCategoryFilterVisible && (
-              <div id="category-filter-panel" className="pt-4">
-                <div className="flex flex-wrap justify-center gap-2" role="radiogroup" aria-labelledby="category-filter-label">
-                    {allCategories.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`cursor-pointer px-4 py-2 text-xs font-bold rounded-full transition-all duration-200 border uppercase tracking-tighter ${
-                                selectedCategory === category
-                                    ? 'bg-black text-white border-black'
-                                    : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
-                            }`}
-                            aria-pressed={selectedCategory === category}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-              </div>
-            )}
-          </div>
+        {/* Render Ultimate Filter panel */}
+        <FilterPanel 
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          allCategories={allCategories}
+          selectedTags={selectedTags}
+          handleTagClick={handleTagClick}
+          handleClearTags={handleClearTags}
+          allTags={allTags}
+          selectedAiTools={selectedAiTools}
+          handleAiToolClick={handleAiToolClick}
+          handleClearAiTools={handleClearAiTools}
+          allAiTools={allAiTools}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          totalCompositionsCount={filteredAndSortedProjects.length}
+        />
 
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <button
-              onClick={() => setIsTagFilterVisible(!isTagFilterVisible)}
-              className="w-full flex justify-between items-center text-left font-bold text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm uppercase tracking-wider"
-              aria-expanded={isTagFilterVisible}
-              aria-controls="tag-filter-panel"
-            >
-              <span>
-                Tags {selectedTags.length > 0 && `— ${selectedTags.length} selected`}
-              </span>
-              <svg 
-                className={`w-5 h-5 transition-transform duration-300 ${isTagFilterVisible ? 'transform rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {selectedTags.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2 items-center p-3 bg-gray-50 rounded-lg border border-gray-200">
-                {selectedTags.map(tag => (
-                  <button
-                    key={tag}
-                    onClick={() => handleTagClick(tag)}
-                    className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-black text-white border border-black hover:bg-gray-800 transition-all"
-                    aria-label={`Remove tag: ${tag}`}
-                  >
-                    {tag}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </button>
-                ))}
-                <button
-                  onClick={handleClearTags}
-                  className="ml-auto px-3 py-1 text-xs font-bold rounded-full transition-all duration-200 border border-black text-black hover:bg-black hover:text-white"
-                  aria-label="Clear all selected tags"
-                >
-                  Clear All
-                </button>
-              </div>
-            )}
-            
-            {isTagFilterVisible && (
-              <div id="tag-filter-panel" className="pt-4">
-                <div className="relative mb-4">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
-                    <svg className="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    value={tagSearchTerm}
-                    onChange={(e) => setTagSearchTerm(e.target.value)}
-                    placeholder="Search tags..."
-                    className="w-full bg-white border border-gray-300 rounded-lg pl-9 pr-3 py-2 text-sm text-black placeholder-gray-400 focus:ring-1 focus:ring-black focus:border-black transition-colors"
-                    aria-label="Search for a tag"
-                  />
-                </div>
-                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                  {visibleTags.map(tag => (
-                    <button 
-                      key={tag}
-                      onClick={() => handleTagClick(tag)}
-                      className={getTagButtonClass(selectedTags.includes(tag))}
-                      aria-pressed={selectedTags.includes(tag)}
-                    >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <button
-              onClick={() => setIsAiToolFilterVisible(!isAiToolFilterVisible)}
-              className="w-full flex justify-between items-center text-left font-bold text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm uppercase tracking-wider"
-              aria-expanded={isAiToolFilterVisible}
-              aria-controls="ai-tool-filter-panel"
-            >
-              <span>
-                AI Tools {selectedAiTools.length > 0 && `— ${selectedAiTools.length} selected`}
-              </span>
-              <svg 
-                className={`w-5 h-5 transition-transform duration-300 ${isAiToolFilterVisible ? 'transform rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {selectedAiTools.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2 items-center p-3 bg-gray-50 rounded-lg border border-gray-200">
-                {selectedAiTools.map(tool => (
-                  <button
-                    key={tool}
-                    onClick={() => handleAiToolClick(tool)}
-                    className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-black text-white border border-black hover:bg-gray-800 transition-all"
-                    aria-label={`Remove tool: ${tool}`}
-                  >
-                    {tool}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </button>
-                ))}
-                <button
-                  onClick={handleClearAiTools}
-                  className="ml-auto px-3 py-1 text-xs font-bold rounded-full transition-all duration-200 border border-black text-black hover:bg-black hover:text-white"
-                  aria-label="Clear all selected AI tools"
-                >
-                  Clear All
-                </button>
-              </div>
-            )}
-            
-            {isAiToolFilterVisible && (
-              <div id="ai-tool-filter-panel" className="pt-4">
-                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                  {allAiTools.map(tool => (
-                    <button 
-                      key={tool}
-                      onClick={() => handleAiToolClick(tool)}
-                      className={getTagButtonClass(selectedAiTools.includes(tool))}
-                      aria-pressed={selectedAiTools.includes(tool)}
-                    >
-                      {tool}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="w-full max-w-7xl space-y-20">
+        {/* Main Content Layout Container */}
+        <div className="w-full max-w-5xl">
           {filteredAndSortedProjects.length > 0 ? (
-            Object.keys(groupedProjects).sort().map(category => (
-              <section key={category}>
-                <div className="relative mb-10">
-                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div className="w-full border-t-2 border-black/10" />
-                  </div>
-                  <div className="relative flex justify-center">
-                    <h2 className="bg-white px-8 text-2xl sm:text-3xl font-black text-black uppercase tracking-widest">{category}</h2>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {groupedProjects[category].map(project => (
-                    <LinkCard key={project.id} project={project} />
+            isBrowsingGeneralAll && groupedProjects ? (
+              /* Custom Grouped Layout - Categorized Sections */
+              <div className="space-y-16">
+                {Object.keys(groupedProjects).sort().map(category => (
+                  <motion.section 
+                    key={category}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="space-y-8"
+                  >
+                    {/* Visual Section dividing titles */}
+                    <div className="flex items-center gap-4">
+                      <h2 className="text-lg sm:text-xl font-extrabold font-display uppercase tracking-widest text-zinc-950 flex-shrink-0">
+                        {category}
+                      </h2>
+                      <div className="h-[2px] bg-zinc-200 w-full rounded" />
+                      <span className="text-xs font-mono font-bold text-zinc-400 bg-white px-2.5 py-1 border border-zinc-200 rounded">
+                        {groupedProjects[category].length}
+                      </span>
+                    </div>
+                    {/* Bento Grid layout */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {groupedProjects[category].map((project, idx) => (
+                        <LinkCard key={project.id} project={project} index={idx} />
+                      ))}
+                    </div>
+                  </motion.section>
+                ))}
+              </div>
+            ) : (
+              /* Custom Flat Grid Layout - Useful for Filtering/Search */
+              <motion.div 
+                layout 
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <AnimatePresence mode="popLayout">
+                  {filteredAndSortedProjects.map((project, idx) => (
+                    <LinkCard key={project.id} project={project} index={idx} />
                   ))}
-                </div>
-              </section>
-            ))
+                </AnimatePresence>
+              </motion.div>
+            )
           ) : (
-            <div className="text-center py-20 px-6 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-              <svg className="mx-auto h-16 w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              </svg>
-              <h3 className="mt-4 text-2xl font-bold text-gray-900">No Projects Found</h3>
-              <p className="mt-2 text-gray-500">Try adjusting your search or filter criteria.</p>
-            </div>
+            /* No Results fallback state screen */
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-20 px-6 bg-white rounded-2xl border border-zinc-200 border-dashed"
+            >
+              <div className="mx-auto h-12 w-12 text-zinc-400 mb-4 flex items-center justify-center bg-zinc-50 rounded-full border border-zinc-100">
+                <Info className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-zinc-900 font-display">No compositions match your settings</h3>
+              <p className="mt-1 text-sm text-zinc-500 max-w-xs mx-auto">Try resetting or broadening your filter criteria to discover more work.</p>
+              <button 
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('All');
+                  handleClearTags();
+                  handleClearAiTools();
+                }}
+                className="mt-5 px-4 py-2 bg-black hover:bg-zinc-800 text-white font-semibold text-xs rounded-lg transition-all shadow-sm"
+              >
+                Reset All Filters
+              </button>
+            </motion.div>
           )}
         </div>
 
-        <footer className="mt-24 pb-12 text-center text-gray-500 text-sm border-t border-gray-100 pt-12 w-full">
-          <div className="flex justify-center space-x-10 mb-8">
-            <a href="mailto:eltonarunga@gmail.com" aria-label="Email" title="Email" className="text-black hover:text-gray-600 transition-colors duration-300">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-            </a>
-            <a href="https://github.com/eltonarunga" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-black hover:text-gray-600 transition-colors duration-300">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" />
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/elton-arunga-80405811b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="text-black hover:text-gray-600 transition-colors duration-300">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-            </a>
-            <a href="https://x.com/E_Arunga" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter" className="text-black hover:text-gray-600 transition-colors duration-300">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.65.177-1.353.23-2.064.077.608 1.881 2.372 3.256 4.465 3.293-1.711 1.341-3.869 2.143-6.217 2.143-.404 0-.802-.023-1.195-.07 2.206 1.414 4.833 2.239 7.646 2.239 9.178 0 14.207-7.603 13.882-14.536 1.033-.745 1.91-1.685 2.62-2.74z" />
-                </svg>
-            </a>
-          </div>
-          <p className="mb-4 font-bold uppercase tracking-widest text-xs">
-            Showing {filteredAndSortedProjects.length} of {PROJECTS.length} compositions
-          </p>
-          <p>&copy; {new Date().getFullYear()} EArunga. All rights reserved.</p>
-          <p className="mt-1 font-medium italic mb-4">Built with React & Tailwind CSS</p>
-          <div className="flex justify-center space-x-4 text-xs">
-            <button onClick={() => setIsTermsOpen(true)} className="hover:text-black transition-colors underline underline-offset-2">Terms of Service</button>
-            <span>|</span>
-            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-black transition-colors underline underline-offset-2">Privacy Policy</button>
+        {/* Global Professional Footer */}
+        <footer className="mt-24 pb-12 text-center text-zinc-400 text-xs border-t border-zinc-150 pt-12 w-full max-w-5xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 px-1">
+            <div className="text-center sm:text-left space-y-1">
+              <p className="font-bold uppercase tracking-wider text-[10px] text-zinc-500 font-mono">
+                COMPOSITION PLATFORM • VERSION 2.5
+              </p>
+              <p className="text-zinc-500 font-medium">&copy; {new Date().getFullYear()} Elton Arunga. Designed with luxury aesthetics & professional standards.</p>
+            </div>
+            
+            {/* Modal legal buttons */}
+            <div className="flex items-center gap-3 font-mono text-[10px] font-bold">
+              <button 
+                onClick={() => setIsTermsOpen(true)} 
+                className="text-zinc-400 hover:text-black transition-colors flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100/50 hover:bg-zinc-100 rounded border border-zinc-200/50"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" /> TERMS OF SERVICE
+              </button>
+              <button 
+                onClick={() => setIsPrivacyOpen(true)} 
+                className="text-zinc-400 hover:text-black transition-colors flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100/50 hover:bg-zinc-100 rounded border border-zinc-200/50"
+              >
+                PRIVACY POLICY
+              </button>
+            </div>
           </div>
         </footer>
       </main>
 
+      {/* Render Legal Modals */}
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </div>
