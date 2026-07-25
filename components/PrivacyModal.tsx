@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { X, ShieldAlert } from 'lucide-react';
 
 interface PrivacyModalProps {
   isOpen: boolean;
@@ -6,58 +8,117 @@ interface PrivacyModalProps {
 }
 
 const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[80vh] flex flex-col overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-black">Privacy Policy</h2>
-          <button 
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Animated Backdrop with close-on-click */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="text-gray-500 hover:text-black transition-colors"
-            aria-label="Close"
+            className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer"
+          />
+
+          {/* Animated Modal Dialog Box */}
+          <motion.div 
+            initial={{ scale: 0.95, y: 20, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.95, y: 20, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 320 }}
+            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden border border-zinc-150 z-10"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+            {/* Header */}
+            <div className="p-6 border-b border-zinc-100 flex justify-between items-center bg-zinc-50/50">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 bg-black text-white rounded-lg">
+                  <ShieldAlert className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold font-display text-zinc-950">Privacy Policy</h2>
+                  <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest mt-0.5">TELEMETRY & PRIVACY CHARTER</p>
+                </div>
+              </div>
+              <button 
+                onClick={onClose}
+                className="p-1.5 rounded-lg text-zinc-400 hover:text-black hover:bg-zinc-100 transition-all"
+                aria-label="Close dialog"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="p-6 sm:p-8 overflow-y-auto flex-1 text-sm text-zinc-600 space-y-5 tags-scrollbar">
+              <p className="font-semibold text-xs text-zinc-400 font-mono uppercase tracking-wider">Last Updated: March 2026</p>
+              
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-zinc-950 font-display">1. Information We Collect</h3>
+                <p className="leading-relaxed">
+                  We collect basic anonymous analytical parameters, including but not limited to IP addresses, browser agents, referring pages, and host system indicators. These details are used to understand how visitors engage with our custom dental platforms and SaaS dashboards.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-zinc-950 font-display">2. Use of Collected Data</h3>
+                <p className="leading-relaxed">
+                  All logged telemetry parameters are used strictly for telemetry diagnostics, verifying site load times, measuring user flow efficiency, and bolstering overall structural security.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-zinc-950 font-display">3. Security Auditing & Threat Prevention</h3>
+                <p className="leading-relaxed">
+                  We monitor inbound connection channels persistently to preempt cyber threats, malicious scraping, API flooding, and probe vectors:
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-zinc-600">
+                  <li><strong>Activity Monitoring:</strong> IP ranges making abnormal connection patterns are automatically rate-limited or blocked.</li>
+                  <li><strong>Security Auditing:</strong> Incident records detailing unauthorized requests may be retained and utilized to pursue necessary defensive actions.</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-zinc-950 font-display">4. Third-Party Redirection</h3>
+                <p className="leading-relaxed">
+                  This portfolio highlights external live deployments, SaaS platforms, and podcasts on Spotify or Vercel. We do not manage the security structures or user policies of external sites. We suggest reviewing their respective privacy frameworks when navigating off-site.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-zinc-950 font-display">5. Updates & Compliance</h3>
+                <p className="leading-relaxed">
+                  This Privacy Charter is reviewed periodically. Any amendments will go live immediately upon updating this portal. Continued use of this site marks your consent to these safety terms.
+                </p>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-zinc-100 bg-zinc-50 flex justify-end gap-3">
+              <button 
+                onClick={onClose}
+                className="px-5 py-2.5 bg-black hover:bg-zinc-800 text-white font-semibold text-xs uppercase tracking-wider rounded-xl transition-all shadow-sm"
+              >
+                Acknowledge & Confirm
+              </button>
+            </div>
+          </motion.div>
         </div>
-        <div className="p-6 overflow-y-auto flex-1 text-gray-700 space-y-4">
-          <p className="font-semibold text-sm text-gray-500 uppercase tracking-wider">Last Updated: March 2026</p>
-          
-          <h3 className="text-lg font-bold text-black mt-6">1. Information We Collect</h3>
-          <p>We may collect basic analytics data, such as IP addresses, browser types, referring pages, and operating systems, to understand how visitors interact with our portfolio and improve user experience.</p>
-
-          <h3 className="text-lg font-bold text-black mt-6">2. Use of Information</h3>
-          <p>The information collected is used solely for internal analytics, monitoring site performance, and ensuring the security of our infrastructure.</p>
-
-          <h3 className="text-lg font-bold text-black mt-6">3. Security Monitoring and Enforcement</h3>
-          <p>We actively monitor traffic to detect and prevent unauthorized activities, including but not limited to scraping, vulnerability scanning, and security circumvention.</p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li><strong>Data Logging:</strong> We log access attempts, including IP addresses, to identify malicious actors.</li>
-            <li><strong>Enforcement:</strong> Information collected during security incidents may be shared with law enforcement, legal counsel, or third-party security services to pursue legal action against individuals or entities violating our Terms of Service.</li>
-          </ul>
-
-          <h3 className="text-lg font-bold text-black mt-6">4. Third-Party Links</h3>
-          <p>This portfolio contains links to external applications and websites. We are not responsible for the privacy practices or content of these third-party sites. We encourage you to review their respective privacy policies.</p>
-
-          <h3 className="text-lg font-bold text-black mt-6">5. Changes to This Policy</h3>
-          <p>We reserve the right to update or modify this Privacy Policy at any time. Changes will be effective immediately upon posting to this site.</p>
-
-          <h3 className="text-lg font-bold text-black mt-6">6. Contact Us</h3>
-          <p>If you have any questions about this Privacy Policy, please contact us at eltonarunga@gmail.com.</p>
-        </div>
-        <div className="p-6 border-t border-gray-100 bg-gray-50 flex justify-end">
-          <button 
-            onClick={onClose}
-            className="px-6 py-2 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            I Understand
-          </button>
-        </div>
-      </div>
-    </div>
+      )}
+    </AnimatePresence>
   );
 };
 

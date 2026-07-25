@@ -1,0 +1,29 @@
+/* Custom modern, low-profile scrollbars for filters and lists */
+.tags-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.tags-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tags-scrollbar::-webkit-scrollbar-thumb {
+  background: #e4e4e7; /* tailwind zinc-200 */
+  border-radius: 9999px;
+}
+
+.tags-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1; /* tailwind slate-300 */
+}
+
+/* For Firefox compatibility */
+.tags-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #e4e4e7 transparent;
+}
+
+/* Base custom interactive transitions */
+.custom-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

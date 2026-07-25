@@ -1,5 +1,8 @@
 {
-  "name": "Software Compositions",
-  "description": "A link tree showcasing a collection of vibe-coded projects, presented as stylish title cards with user-selectable light and dark themes.",
-  "requestFramePermissions": []
+  "name": "Software Compositions by EArunga",
+  "description": "A premium catalog of intelligent applications, production SaaS platforms, AI clinical assistants, and dental tech hubs developed by EArunga.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

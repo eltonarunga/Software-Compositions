@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Project } from '../types';
-import { ArrowUpRight, Cpu, Calendar, ShieldAlert } from 'lucide-react';
+import { ArrowUpRight, Cpu, Calendar } from 'lucide-react';
 
 interface LinkCardProps {
   project: Project;
@@ -10,14 +10,19 @@ interface LinkCardProps {
 
 const isRecentProject = (createdAtDate: string): boolean => {
   if (!createdAtDate) return false;
-  const [year, month, day] = createdAtDate.split('-').map(Number);
-  const projectDate = new Date(year, month - 1, day);
+  try {
+    const [year, month, day] = createdAtDate.split('-').map(Number);
+    const projectDate = new Date(year, month - 1, day);
 
-  // Consider things within 60 days as recent/highlighted given the current timeline of portfolio releases
-  const durationLimit = new Date(2026, 5, 4); // Current month is June 2026 (index 5)
-  durationLimit.setDate(durationLimit.getDate() - 60);
+    // Highlight projects created within the last 180 days (6 months) dynamically
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - projectDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-  return projectDate >= durationLimit;
+    return diffDays <= 180;
+  } catch {
+    return false;
+  }
 };
 
 const LinkCard: React.FC<LinkCardProps> = ({ project, index }) => {
