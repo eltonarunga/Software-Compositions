@@ -58,17 +58,17 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
             <span className="text-xs text-zinc-500 font-mono">@eltonarunga</span>
           </div>
           <p className="text-sm text-zinc-700 leading-relaxed font-sans mb-3">
-            I am a software composer and passionate developer of secure, highly interactive full-stack platforms, AI clinical assistants, teledentistry career hubs, and digital dental platforms.
+            I'm a passionate Software Architect and AI Enthusiast, prototyping impactful applications and exploring how technology can solve real-world problems. I'm particularly excited about AI and community-driven projects.
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-4 text-[11px] font-semibold text-zinc-600 font-mono">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-50 border border-zinc-200 rounded-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Secure Coding
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Software Architecture
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-50 border border-zinc-200 rounded-md">
-              <Terminal className="w-3.5 h-3.5 text-zinc-700" /> Clean Coder
+              <Terminal className="w-3.5 h-3.5 text-zinc-700" /> Clean Code & Systems
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-50 border border-zinc-200 rounded-md text-emerald-700 bg-emerald-50/50 border-emerald-100">
-              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> Dental Tech Care
+              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> Community-Driven
             </span>
           </div>
         </div>

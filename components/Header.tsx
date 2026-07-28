@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        Composer • Principal Engineer
+        Software Architect • AI Innovator
       </motion.div>
 
       {/* Avatar Wrapper with Interactive Borders */}
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
       </h1>
       
       <p className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto font-medium leading-relaxed font-sans px-4">
-        A premium catalog of {totalCompositions} intelligent applications, production MVPs, and dental tech hubs at the intersection of clean system architecture, robust cybersecurity, and AI assistance.
+        A curated portfolio of {totalCompositions} impactful applications, AI prototypes, and full-stack solutions exploring how technology solves real-world problems.
       </p>
 
       {/* Social and Communication Icons bar */}
