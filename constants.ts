@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
     title: 'DentSide Remote',
     description: 'An all-in-one remote career hub for dentists, offering teledentistry, insurance review, freelance gigs, and corporate roles in a single platform.',
     imageUrl: getImageForIndex(5),
-    url: 'https://dent-side-remote.vercel.app/',
+    url: 'https://dentside-remote.onrender.com/',
     tags: ['Health', 'Dentistry', 'Career', 'Remote', 'Teledentistry', 'Platform'],
     category: 'SaaS & Platforms',
     createdAt: '2026-04-16',
