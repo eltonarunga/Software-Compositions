@@ -1,3 +1,17 @@
+/* Global Base Polish */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Accessible focus styling */
+:focus-visible {
+  outline: 2px solid #18181b;
+  outline-offset: 2px;
+}
+
 /* Custom modern, low-profile scrollbars for filters and lists */
 .tags-scrollbar::-webkit-scrollbar {
   width: 5px;
@@ -26,4 +40,9 @@
 /* Base custom interactive transitions */
 .custom-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent unwanted layout shifts */
+img {
+  content-visibility: auto;
 }

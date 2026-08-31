@@ -10,6 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }) => {
   return (
     <motion.header 
+      id="main-header"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -21,12 +22,13 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
 
       {/* Specialty Badge */}
       <motion.div 
+        id="architect-badge"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 0.4 }}
         className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 shadow-sm text-xs font-semibold text-zinc-800 uppercase tracking-widest font-mono mb-6"
       >
-        <span className="relative flex h-2 w-2">
+        <span className="relative flex h-2 w-2" aria-hidden="true">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
@@ -34,9 +36,10 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
       </motion.div>
 
       {/* Avatar Wrapper with Interactive Borders */}
-      <div className="relative inline-block mb-6 group">
+      <div id="avatar-container" className="relative inline-block mb-6 group">
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-200 to-zinc-400 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
         <img
+          id="profile-avatar-img"
           src={activeProfileImage}
           alt="EArunga Profile Avatar"
           className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-[3px] border-white ring-2 ring-black shadow-lg object-cover object-center transition-all duration-500 group-hover:rotate-1"
@@ -47,30 +50,32 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
       </div>
 
       {/* Typography Section */}
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-black font-display tracking-tight leading-tight mb-3">
+      <h1 id="portfolio-title" className="text-4xl sm:text-5xl font-extrabold text-black font-display tracking-tight leading-tight mb-3">
         Software Compositions <span className="text-zinc-500 font-light">by</span> EArunga
       </h1>
       
-      <p className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto font-medium leading-relaxed font-sans px-4">
+      <p id="portfolio-tagline" className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto font-medium leading-relaxed font-sans px-4">
         A curated portfolio of {totalCompositions} impactful applications, AI prototypes, and full-stack solutions exploring how technology solves real-world problems.
       </p>
 
       {/* Social and Communication Icons bar */}
-      <div className="flex justify-center items-center gap-4 mt-6">
+      <nav id="social-nav" aria-label="Social and contact links" className="flex justify-center items-center gap-4 mt-6">
         <a 
+          id="social-link-email"
           href="mailto:eltonarunga@gmail.com" 
-          aria-label="Email EArunga"
-          title="Direct Email"
+          aria-label="Send direct email to Elton Arunga"
+          title="Direct Email (eltonarunga@gmail.com)"
           className="p-2.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-black hover:bg-zinc-100 hover:border-zinc-400 shadow-sm hover:shadow-md transition-all duration-300"
         >
-          <Mail className="w-5 h-5 animate-pulse" />
+          <Mail className="w-5 h-5" />
         </a>
         <a 
+          id="social-link-github"
           href="https://github.com/eltonarunga" 
           target="_blank" 
           rel="noopener noreferrer" 
-          aria-label="GitHub Profile"
-          title="GitHub Account"
+          aria-label="View Elton Arunga's GitHub profile"
+          title="GitHub Profile"
           className="p-2.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-black hover:bg-zinc-100 hover:border-zinc-400 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
         >
           <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -78,11 +83,12 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
           </svg>
         </a>
         <a 
+          id="social-link-linkedin"
           href="https://www.linkedin.com/in/elton-arunga-80405811b/" 
           target="_blank" 
           rel="noopener noreferrer" 
-          aria-label="LinkedIn Profile"
-          title="LinkedIn Portfolio"
+          aria-label="View Elton Arunga's LinkedIn profile"
+          title="LinkedIn Profile"
           className="p-2.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-black hover:bg-zinc-100 hover:border-zinc-400 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
         >
           <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -90,18 +96,19 @@ const Header: React.FC<HeaderProps> = ({ activeProfileImage, totalCompositions }
           </svg>
         </a>
         <a 
+          id="social-link-twitter"
           href="https://x.com/E_Arunga" 
           target="_blank" 
           rel="noopener noreferrer" 
-          aria-label="Twitter Profile"
-          title="X / Twitter"
+          aria-label="View Elton Arunga on X / Twitter"
+          title="X / Twitter (@E_Arunga)"
           className="p-2.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700 hover:text-black hover:bg-zinc-100 hover:border-zinc-400 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center"
         >
           <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
           </svg>
         </a>
-      </div>
+      </nav>
     </motion.header>
   );
 };

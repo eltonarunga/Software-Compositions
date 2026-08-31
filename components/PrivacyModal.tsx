@@ -8,22 +8,36 @@ interface PrivacyModalProps {
 }
 
 const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
-  // Prevent body scroll when modal is open
+  // Prevent body scroll and handle Escape key when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = 'unset';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div 
+          id="privacy-modal-overlay"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="privacy-modal-title"
+          aria-describedby="privacy-modal-desc"
+        >
           {/* Animated Backdrop with close-on-click */}
           <motion.div 
             initial={{ opacity: 0 }}
@@ -32,15 +46,17 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
             transition={{ duration: 0.25 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer"
+            aria-hidden="true"
           />
 
           {/* Animated Modal Dialog Box */}
           <motion.div 
+            id="privacy-modal-content"
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 320 }}
-            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden border border-zinc-150 z-10"
+            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden border border-zinc-200 z-10"
           >
             {/* Header */}
             <div className="p-6 border-b border-zinc-100 flex justify-between items-center bg-zinc-50/50">
@@ -49,11 +65,12 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
                   <ShieldAlert className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold font-display text-zinc-950">Privacy Policy</h2>
+                  <h2 id="privacy-modal-title" className="text-xl font-bold font-display text-zinc-950">Privacy Policy</h2>
                   <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest mt-0.5">TELEMETRY & PRIVACY CHARTER</p>
                 </div>
               </div>
               <button 
+                id="privacy-modal-close-btn"
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-black hover:bg-zinc-100 transition-all"
                 aria-label="Close dialog"
@@ -63,7 +80,7 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Scrollable Content */}
-            <div className="p-6 sm:p-8 overflow-y-auto flex-1 text-sm text-zinc-600 space-y-5 tags-scrollbar">
+            <div id="privacy-modal-desc" className="p-6 sm:p-8 overflow-y-auto flex-1 text-sm text-zinc-600 space-y-5 tags-scrollbar">
               <p className="font-semibold text-xs text-zinc-400 font-mono uppercase tracking-wider">Last Updated: March 2026</p>
               
               <div className="space-y-2">
@@ -109,6 +126,7 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
             {/* Footer */}
             <div className="p-6 border-t border-zinc-100 bg-zinc-50 flex justify-end gap-3">
               <button 
+                id="privacy-modal-confirm-btn"
                 onClick={onClose}
                 className="px-5 py-2.5 bg-black hover:bg-zinc-800 text-white font-semibold text-xs uppercase tracking-wider rounded-xl transition-all shadow-sm"
               >

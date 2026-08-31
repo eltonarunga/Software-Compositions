@@ -34,27 +34,33 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
 
   return (
     <motion.section 
+      id="about-stats-bento"
+      aria-label="About Architect and Portfolio Statistics"
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.5 }}
       className="w-full max-w-5xl mx-auto mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6"
     >
       {/* Left Bento: About Me Deep Profile (Col 7) */}
-      <div className="lg:col-span-7 bg-white/75 backdrop-blur-md border border-zinc-200/80 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
+      <div 
+        id="about-profile-card"
+        className="lg:col-span-7 bg-white/80 backdrop-blur-md border border-zinc-200/80 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden"
+      >
         {/* Subtle geometric line pattern inside card */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-zinc-50 to-transparent opacity-50 z-0 pointer-events-none" />
         
         <div className="relative group flex-shrink-0 z-10">
           <img 
+            id="bento-avatar-img"
             src={activeProfileImage} 
-            alt="Elton Arunga Profile" 
+            alt="Elton Arunga" 
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border border-zinc-200 object-cover shadow-sm transition-transform duration-500 group-hover:scale-105"
           />
         </div>
         
         <div className="relative z-10 flex-grow text-center md:text-left">
           <div className="flex flex-col sm:flex-row items-center sm:items-baseline gap-2 mb-2">
-            <h2 className="text-xl sm:text-2xl font-bold font-display text-zinc-950">Elton Arunga</h2>
+            <h2 id="bento-profile-name" className="text-xl sm:text-2xl font-bold font-display text-zinc-950">Elton Arunga</h2>
             <span className="text-xs text-zinc-500 font-mono">@eltonarunga</span>
           </div>
           <p className="text-sm text-zinc-700 leading-relaxed font-sans mb-3">
@@ -75,9 +81,12 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
       </div>
 
       {/* Right Bento: Professional Stats Dashboard (Col 5) */}
-      <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+      <div id="stats-grid" className="lg:col-span-5 grid grid-cols-2 gap-4">
         {/* Stat 1: Total projects */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 shadow-sm text-white flex flex-col justify-between hover:border-zinc-700 transition-all duration-300">
+        <div 
+          id="stat-card-total-compositions"
+          className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 shadow-sm text-white flex flex-col justify-between hover:border-zinc-700 transition-all duration-300"
+        >
           <div>
             <LayoutGrid className="w-5 h-5 text-zinc-400 mb-3" />
             <h3 className="text-zinc-400 text-xs font-bold uppercase tracking-widest font-mono">Compositions</h3>
@@ -89,7 +98,10 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
         </div>
 
         {/* Stat 2: AI Enhanced */}
-        <div className="bg-white/75 backdrop-blur-md border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300">
+        <div 
+          id="stat-card-ai-ecosystem"
+          className="bg-white/80 backdrop-blur-md border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300"
+        >
           <div>
             <Sparkles className="w-5 h-5 text-amber-500 mb-3" />
             <h3 className="text-zinc-500 text-xs font-bold uppercase tracking-widest font-mono">AI Ecosystem</h3>
@@ -101,7 +113,10 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
         </div>
 
         {/* Stat 3: Unique AI Tools */}
-        <div className="bg-white/75 backdrop-blur-md border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300">
+        <div 
+          id="stat-card-tools-mastery"
+          className="bg-white/80 backdrop-blur-md border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300"
+        >
           <div>
             <Cpu className="w-5 h-5 text-indigo-500 mb-3" />
             <h3 className="text-zinc-500 text-xs font-bold uppercase tracking-widest font-mono">Tools Mastery</h3>
@@ -113,7 +128,10 @@ const AboutStatsBento: React.FC<AboutStatsBentoProps> = ({ activeProfileImage, p
         </div>
 
         {/* Stat 4: Unique categories */}
-        <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300">
+        <div 
+          id="stat-card-categories"
+          className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-all duration-300"
+        >
           <div>
             <LayoutGrid className="w-5 h-5 text-zinc-700 mb-3" />
             <h3 className="text-zinc-600 text-xs font-bold uppercase tracking-widest font-mono">Categories</h3>
