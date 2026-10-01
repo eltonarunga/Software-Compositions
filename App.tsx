@@ -7,8 +7,9 @@ import FilterPanel from './components/FilterPanel';
 import LinkCard from './components/LinkCard';
 import TermsModal from './components/TermsModal';
 import PrivacyModal from './components/PrivacyModal';
+import SocialShareModal from './components/SocialShareModal';
 import { Project, SortBy, SortOrder } from './types';
-import { ShieldCheck, Info, ArrowUp } from 'lucide-react';
+import { ShieldCheck, Info, ArrowUp, Share2 } from 'lucide-react';
 
 const PROFILE_PICTURE_URL = 'https://ugc.production.linktr.ee/89b33d54-41fc-4708-900c-83ceb1abd15e_1000393391.png?io=true&size=avatar-v3_0';
 const avatarSvg = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#000000" /><stop offset="100%" stop-color="#4b5563" /></linearGradient></defs><rect width="128" height="128" fill="#f3f4f6" /><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" font-weight="bold" fill="url(#avatarGrad)" dy=".1em">EA</text></svg>`;
@@ -25,6 +26,7 @@ const App: React.FC = () => {
   const [selectedAiTools, setSelectedAiTools] = useState<string[]>([]);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Debounce search input to improve performance
@@ -184,7 +186,11 @@ const App: React.FC = () => {
       {/* Main Container */}
       <main id="main-content" className="relative z-10 container mx-auto px-4 py-12 max-w-7xl flex flex-col items-center">
         {/* Render Header Component */}
-        <Header activeProfileImage={activeProfileImage} totalCompositions={PROJECTS.length} />
+        <Header 
+          activeProfileImage={activeProfileImage} 
+          totalCompositions={PROJECTS.length} 
+          onOpenShare={() => setIsShareOpen(true)}
+        />
 
         {/* Render Elegant Stats Bento Dashboard */}
         <AboutStatsBento activeProfileImage={activeProfileImage} projects={PROJECTS} />
@@ -309,8 +315,15 @@ const App: React.FC = () => {
               <p className="text-zinc-500 font-medium">&copy; {new Date().getFullYear()} Elton Arunga. Designed with luxury aesthetics & professional standards.</p>
             </div>
             
-            {/* Modal legal buttons */}
-            <div className="flex items-center gap-3 font-mono text-[10px] font-bold">
+            {/* Modal legal and share buttons */}
+            <div className="flex items-center gap-2.5 font-mono text-[10px] font-bold">
+              <button 
+                id="footer-share-btn"
+                onClick={() => setIsShareOpen(true)} 
+                className="text-zinc-700 hover:text-black transition-colors flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200/80 rounded-md border border-zinc-200/60"
+              >
+                <Share2 className="w-3.5 h-3.5 text-emerald-600" /> SHARE CARD
+              </button>
               <button 
                 id="footer-terms-btn"
                 onClick={() => setIsTermsOpen(true)} 
@@ -348,9 +361,14 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Render Legal Modals */}
+      {/* Render Legal & Share Modals */}
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+      <SocialShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        totalCompositions={PROJECTS.length} 
+      />
     </div>
   );
 };

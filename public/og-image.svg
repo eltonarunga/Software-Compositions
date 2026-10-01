@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="og-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="og-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#27272a" stop-opacity="0.4" />
+    </linearGradient>
+    <linearGradient id="accent-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272a" stroke-width="1" stroke-opacity="0.6"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="80" result="blur" />
+    </filter>
+  </defs>
+
+  <!-- Deep Dark Background -->
+  <rect width="1200" height="630" fill="url(#og-bg)" />
+  
+  <!-- Subtle Ambient Glows -->
+  <circle cx="200" cy="150" r="250" fill="#10b981" fill-opacity="0.12" filter="url(#glow)" />
+  <circle cx="1000" cy="500" r="300" fill="#6366f1" fill-opacity="0.10" filter="url(#glow)" />
+
+  <!-- Grid overlay -->
+  <rect width="1200" height="630" fill="url(#grid-pattern)" />
+  
+  <!-- Outer subtle border -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="#27272a" stroke-width="2" />
+
+  <!-- Top Pill / Badge -->
+  <g transform="translate(80, 80)">
+    <rect width="270" height="38" rx="19" fill="#18181b" stroke="#3f3f46" stroke-width="1.5"/>
+    <circle cx="24" cy="19" r="5" fill="#10b981" />
+    <text x="38" y="24" fill="#d4d4d8" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">SOFTWARE ARCHITECT</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="80" y="190" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Space Grotesk', sans-serif" font-size="56" font-weight="800" letter-spacing="-1.5">
+    Software Compositions
+  </text>
+  
+  <text x="80" y="246" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Space Grotesk', sans-serif" font-size="34" font-weight="400">
+    by <tspan fill="#f4f4f5" font-weight="700">Elton Arunga</tspan> (@eltonarunga)
+  </text>
+
+  <!-- Subtitle / Value proposition -->
+  <text x="80" y="320" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="400">
+    A curated portfolio of impactful full-stack applications, AI prototypes,
+  </text>
+  <text x="80" y="354" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="400">
+    and community-driven Web3 solutions solving real-world challenges.
+  </text>
+
+  <!-- Bottom Stats & Domains Bento Pills -->
+  <g transform="translate(80, 430)">
+    <!-- Pill 1: Web3 & Blockchain -->
+    <rect x="0" y="0" width="220" height="64" rx="14" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="24" y="26" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1">DOMAINS</text>
+    <text x="24" y="48" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="600">Web3 • AI/ML • SaaS</text>
+
+    <!-- Pill 2: Featured: AgriToken & DentMatch -->
+    <rect x="236" y="0" width="260" height="64" rx="14" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="24" y="26" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1">LATEST LAUNCH</text>
+    <text x="24" y="48" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="600">AgriToken • DentMatchKE</text>
+
+    <!-- Pill 3: Live Ecosystem -->
+    <rect x="512" y="0" width="220" height="64" rx="14" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="24" y="26" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="1">LIVE PLATFORM</text>
+    <text x="24" y="48" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="600">Interactive Directory</text>
+  </g>
+
+  <!-- Right Visual Monogram Seal -->
+  <g transform="translate(860, 140)">
+    <rect width="240" height="240" rx="36" fill="#18181b" stroke="#3f3f46" stroke-width="2"/>
+    <!-- Nested architectural framing -->
+    <rect x="18" y="18" width="204" height="204" rx="26" fill="none" stroke="#27272a" stroke-dasharray="6 6" stroke-width="2"/>
+    <!-- Stylized brackets & monogram -->
+    <path d="M 68 85 L 42 120 L 68 155" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 172 85 L 198 120 L 172 155" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="120" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Space Grotesk', sans-serif" font-size="62" font-weight="900" fill="#ffffff" text-anchor="middle">EA</text>
+  </g>
+
+  <!-- Footer link / branding -->
+  <text x="80" y="555" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'JetBrains Mono', monospace" font-size="14">
+    https://github.com/eltonarunga • https://x.com/E_Arunga
+  </text>
+</svg>
